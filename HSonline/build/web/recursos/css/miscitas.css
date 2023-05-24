@@ -1,0 +1,118 @@
+@charset "ISO-8859-1";
+
+body{
+    background-image: url("../img/recepcion.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 198px);
+}
+
+/*-----------------*/
+
+.main_container{
+    width: 100%;
+    min-height: calc(100vh - 196px);
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.table-responsive{
+    width: 68%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: white;
+    overflow: auto;
+    box-sizing: border-box;
+}
+.aside{
+    width: 30%;
+    min-height: calc(100vh - 196px);
+    padding: 10px;
+    background-color: #fff;
+    opacity: 0.6;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    box-sizing: border-box;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/*estilos citas agendadas*/
+.callout {
+    margin: 10px;
+  /*margin-left: 20px;*/
+  
+  max-width: 300px;
+}
+
+.callout-header {
+  padding: 10px;
+  background-color: #269abc;
+  color: white;
+}
+
+.callout-container {
+  padding: 15px;
+  background-color: whitesmoke;
+  color: black
+}
+
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: lightgrey;
+}
+
+.table-responsive table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-responsive table thead{background-color: #269abc;font-weight: bold;color: whitesmoke}
+.table-responsive table thead th,tr,td{padding: 10px}
+.table-responsive table thead th,tr{padding: 5px; border: 1px solid #ddd;}
+
+/* Pagination links */
+.paginacion{margin-top: 20px;}
+.paginacion a {
+    color: black;
+    float: left;
+    padding: 5px 12px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.paginacion a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.paginacion a:hover:not(.active) {background-color: #ddd;}
+
+@media only screen and(min-width:700px){
+    .main_container{width: 80%;display: block;margin: auto}
+}
+
+/*estilos footer*/
+.footer{
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+.f_item{
+    width: 100%;
+}
+

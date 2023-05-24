@@ -1,0 +1,359 @@
+@charset "ISO-8859-1";
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+/*tabla*/
+body{min-height: 100vh}
+
+
+.top_container{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.top_container .filter_div, .search_div{
+    width: 100%;
+}
+.filter_div{
+    display: flex;
+    align-items: flex-start;
+}
+.filter_div .filter_item { padding: 10px;border: none;cursor: pointer;color: #269abc}
+
+.filter_div .filter_item.active,.filter_item:hover{ background-color: #f1f1f1;transition: 0.2s ease-in}
+.search_div{
+    display: flex;
+    justify-content: flex-end;
+}
+.search_div input,.btn_search{
+    padding: 4px 10px;
+    font-weight: bold;
+    border: 2px solid #e0e0e0;
+    outline-color: skyblue;
+    font-family: monospace;
+}
+.search_div .btn_search{background-color: #269abc;color: white;opacity: 0.8}
+
+.main-item{
+    margin: 0 20px;
+}
+.container-data{
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: white;
+    /*box-sizing: border-box;*/
+}
+/*data table*/
+
+
+/*.container_table table tbody tr:nth-child(even){background-color: #f1f1f1}*/
+/*.container_table table tbody tr:hover{background-color: #e0e0e0}*/
+/*.container_table table tr,td{
+    border: 1px solid #e0e0e0;
+    
+
+}*/
+table thead{
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #269abc;
+    color: black;
+}
+
+/*.container_table table thead td{
+    padding: 0 10px;
+
+}
+.container_table table tbody{
+    font-size: 18px;
+}
+.container_table table tbody td{
+    padding: 10px;
+}*/
+.accion{
+    width: 100%;
+    color: whitesmoke;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-edit{background-color: #04AA6D;}
+.btn-delete{background-color: red;padding: 5px 8px}
+.btn-detail{background-color: #269abc;}
+
+/* Pagination links */
+.paginacion{margin-top: 20px;}
+.paginacion a {
+    color: black;
+    float: left;
+    padding: 2px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.paginacion a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.paginacion a:hover:not(.active) {background-color: #ddd;}
+
+
+/*popup form to add*/
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+    background-color: #269abc;
+    color: white;
+/*    font-size: 40px;
+    font-weight: bold;*/
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    z-index: 9;
+}
+/*.open-button:hover{opacity: 0.8;}*/
+
+/* The popup form - hidden by default */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    overflow: auto;
+}
+
+.form-popup {
+    position: absolute;
+    width: 40%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 2;
+}
+
+.form-popup .cancel{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 10px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: red;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.form-popup .cancel:hover{opacity: 0.7;}
+
+/* Add Zoom Animation */
+.form-popup.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Add styles to the form container */
+.form-container {
+    max-width: 100%;
+    padding: 20px 10px;
+    background-color: white;
+}
+
+/*progress*/
+.progressbar{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 0 3rem;
+}
+.progressbar::before, .progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+
+}
+.progress{
+    background-color: #269abc;
+    width: 0%;
+    transition: 0.3s;
+}
+.progress-step{
+    width: 30px;
+    height: 30px;
+    background-color: #dcdcdc;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+}
+
+.progress-step-active{
+    background-color: #269abc;
+    color: white;
+}
+
+.progress-step::before{
+    counter-increment: step;
+    content: counter(step);
+}
+.progress-step::after{
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    font-size: 12px;
+    color: #666;
+}
+
+/*form*/
+
+.f_row{
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 10px 0;
+}
+.f_column{
+    width: 100%;
+    margin: 0 10px;
+    display: block;
+    box-sizing: border-box;
+}
+
+/*label styles*/
+label{
+    display: block;
+    margin-bottom: 6px;
+    text-align: left;
+}
+/*input global styles*/
+.f_txt{
+    display: block;
+    width: 100%;
+    padding: 0.50rem;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #ddd;
+}
+.show-passw{
+    display: inline-block;
+    float: right;
+    margin-top: -24px;
+    margin-right: 10px;
+    color: #666;
+}
+
+.f_txt:focus{background-color: #f1f1f1}
+
+.form-step{
+    display: none;
+    transform-origin: top;
+    animation: animateform 0.6s;
+}
+.form-step-active{
+    display: block;
+}
+
+@keyframes animateform{
+    from{
+        transform: scale(1, 0);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+}
+
+.size_50{
+    width: 50%;
+}
+.ml_auto{
+    margin-left: auto;
+}
+
+.input_group{
+    margin: 1rem auto;
+}
+
+.btn_group{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1.5rem;
+}
+
+.form-step .btn{
+    padding: 10px 0;
+    text-decoration: none;
+    display: block;
+    background-color: #269abc;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    text-align: center;
+    transition: 0.3s;
+}
+.form-step .btn:hover{
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #269abc;
+}
+
+.btn_guardar{
+    padding: 14px 0;
+    background-color: #269abc;
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    border: none;
+}
+.btn_guardar:hover{opacity: 0.8;}
+
+
+/*------------------------responsive styles---------------------*/
+@media screen and (max-width: 900px){
+    
+}
+@media screen and (max-width: 400px){
+
+    .top_container{display: block;}
+    .search_div{float: none;width: 90%;margin: 5px auto; text-align: center}
+    .filter_div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}

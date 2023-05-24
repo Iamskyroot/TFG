@@ -1,0 +1,88 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-ene-2023, 9:59:29
+    Author     : Skyroot
+*/
+body{background-color: #ddd;min-height: 100vh}
+/*.main{
+    width: 100%;
+    padding-top: 20px;
+}*/
+.top_container{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.top_container .filter_div, .search_div{
+    width: 100%;
+}
+.filter_div{
+    display: flex;
+    align-items: flex-start;
+}
+.filter_div .filter_item { padding: 10px;border: none;cursor: pointer;color: #269abc}
+
+.filter_div .filter_item.active,.filter_item:hover{ background-color: #f1f1f1;transition: 0.2s ease-in}
+.search_div{
+    display: flex;
+    justify-content: flex-end;
+}
+.search_div input,.btn_search{
+    padding: 4px 10px;
+    font-weight: bold;
+    border: 2px solid #e0e0e0;
+    outline-color: skyblue;
+    font-family: monospace;
+}
+.search_div .btn_search{background-color: #269abc;color: white;opacity: 0.8}
+
+.container-data{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+.table-responsive{
+    max-height: 750px;
+    overflow: auto;
+}
+
+
+table thead{
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #269abc;
+    color: whitesmoke;
+}
+
+.main_container .top_container, .searchbar, .panel,table{
+    width: 100%;
+}
+
+/* Pagination links */
+.paginacion{margin-top: 20px;}
+.paginacion a {
+    color: black;
+    float: left;
+    padding: 2px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.paginacion a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.paginacion a:hover:not(.active) {background-color: #ddd;}
+
+.numrow{float: right}
+
+
+

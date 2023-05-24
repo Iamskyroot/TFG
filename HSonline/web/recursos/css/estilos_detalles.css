@@ -1,0 +1,154 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-ene-2023, 11:39:10
+    Author     : Skyroot
+*/
+
+body{
+    background-color: #ddd;
+    min-height: 100vh;
+}
+
+.container{
+    width: 70%;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 10px;
+    border-radius: 2px;
+}
+
+
+.detalle-printbtn {
+    float: left;
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #269abc;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    color: whitesmoke;
+    cursor: pointer;
+}
+.detalle-printbtn:hover{opacity: 0.8}
+/*.closebtn{
+    float: right;
+    padding: 0 10px;
+    background-color: red;
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+    opacity: 0.5;
+}*/
+
+.detalle-header{
+    width: 100%;
+    padding: 20px 10px;
+    text-align: center;
+    background-color: #04AA6D;
+}
+.historial, .historial span{width: 100%;display: block;text-align: left}
+.imgcontainer{
+    width: 100%;
+    text-align: center;
+}
+.titulo-seccion{padding: 10px; background-color: #e0e0e0}
+.main-seccion{
+    padding: 0 10px;
+    display: flex;
+}
+.main-seccion div,.consulta{
+    width: 100%;
+    display: block;
+    align-content: flex-start;
+}
+.consulta .seccion-fila{
+    display: flex;
+}
+.detalle-header div{
+    width: 100%;
+    color: white;
+}
+.tratamiento{
+    overflow: auto;
+}
+.main-seccion table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detalle{
+    width: 100%;
+    padding: auto;
+}
+.detalle-content, .detalle-content-main{
+    width: 100%;
+}
+.detalle-content-main{
+    padding: 10px;
+}
+
+
+.d{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+
+.closebtn:hover,
+.closebtn:focus {
+    background-color: red;
+    opacity: 0.7;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+/*impresion*/
+@media print{
+    ul,.detalle-printbtn, .closebtn{
+        display: none;
+    }
+    
+
+}
+@media print{
+    body{background-color: #fff}
+    .container,.detalle,.detalle-content{
+        width: 100%;
+        margin: 0;padding: 0;
+    }
+}

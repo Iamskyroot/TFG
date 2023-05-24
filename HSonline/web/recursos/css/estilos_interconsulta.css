@@ -1,0 +1,263 @@
+@charset "ISO-8859-1";
+/* Formulario de registro */
+*{margin: 0;padding: 0}
+label,p,ul,li{
+    margin: 0;
+    padding: 0;
+}
+a{text-decoration: none}
+body{
+    background-color: #ddd;
+    min-height: 100vh;
+}
+.results_container{
+    width: 70%;
+    margin: auto;
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.results_container.mostrar{
+    display: block;
+    transition: 0.2s ease-in-out;
+}
+.form_container{
+    position: absolute;
+    width: 60%;
+    left: 20%;
+    right: 20%;
+    /*bottom: 0;*/
+    margin-top: 10px;
+    padding: 20px 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #e0e0e0;
+    background-color: white;
+}
+.top_content{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.date{
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+    margin-bottom: 20px;
+}
+.container_form, form,.seccion_form{
+    width: 100%;
+}
+.seccion_form{
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+}
+.seccion_form legend{
+    color: #269abc;
+    font-weight: bold;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.column{
+    width: 100%;
+    margin: 0 20px;
+}
+.column > input, select,textarea{
+    width: 100%;
+    min-height: 22px;
+    border: 1px solid #e0e0e0;
+    outline-color: skyblue;
+    padding: 4px 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.textarea{
+    min-height: 30px;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+.acordeon {
+    box-sizing: border-box;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    padding: 10px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-top: 10px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.acordeon.active{
+    display: block;
+    transition: 0.3s ease-in-out;
+    background-color: #ccc;
+}
+
+.acordeon:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    /*    max-height: 0;*/
+    overflow: hidden;
+    display: none;
+    /*    transition: max-height 0.3s ease-out;*/
+}
+
+
+.acordeon:before {
+    content: '\02C3'; /* Unicode character for "plus" sign (>) */
+    font-size: 18px;
+    color: #777;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.acordeon.active:before {
+    content: '\02C5'; /* Unicode character for "minus" sign (>) reverse */
+    font-size: 18px;
+    color: #777;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/*buttons*/
+.btn{
+    box-sizing: border-box;
+    margin-top: 15px;
+}
+.btn .btn-bt{
+    font-weight: bold;
+    padding: 10px 20px;
+    margin: 0 20px;
+    background-color: #269abc;
+    border: none;
+    border-radius: 5px;
+    color: whitesmoke;
+    cursor: pointer;
+}
+/*.btn .btn-gc{
+    background-color: #269abc;
+}*/
+.btn .btn-bt:hover{
+    opacity: 0.7;
+}
+/*filter*/
+#txtBuscar {
+  background-image: url('../css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  outline-color: skyblue;
+  margin: 4px 0;
+}
+
+.lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.lista li label {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+}
+
+
+/*------------------------------------------------------------------*/
+/*mensajes de estado*/
+.alert {
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    display: block;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.closealert{
+    padding: 0 4px;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: red;
+    opacity: 0.6;
+}
+
+.alert.warning {background-color: #ff9800;}
+.alert.success {background-color: #04AA6D;}
+
+.form_container .closebtn {
+    position: absolute;
+    padding: 2px 8px;
+    font-weight: bold;
+    /*float: right;*/
+    top: 0;
+    right: 0;
+    font-size: 28px;
+    /*line-height: 20px;*/
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: red;
+    opacity: 0.6;
+}
+.closealert,.closebtn a{color: whitesmoke;}
+
+.closealert,.closebtn:hover {
+    color: whitesmoke;
+    opacity: 0.8;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+

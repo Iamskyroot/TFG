@@ -1,0 +1,105 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-abr-2023, 23:15:36
+    Author     : Skyroot
+*/
+*{margin: 0;padding: 0}
+body{min-height: 100vh;background-color: #ddd}
+label,p,ul,li,fieldset{
+    margin: 0;
+    padding: 0;
+}
+
+.container-data{
+    background-color: white;
+    min-height: calc(100vh - 50px);
+    margin-top: 10px;
+}
+.perfil-container{
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    margin-top: 10px;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+}
+.edit-img{
+    background-color: #269abc;
+    color: whitesmoke;
+    padding: 8px 10px;
+    margin-left: -26px;
+    border-radius: 50%;
+}
+.btn-edit-container{
+    text-align: right;
+}
+/* Avatar image */
+img.img-perfil {
+    margin-top: 20px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.edit-btn{
+    padding: 5px 10px;
+    cursor: pointer;
+    border-color: #666;
+    background-color: #ddd;
+    border-radius: 4px;
+/*    font-weight: bold;*/
+}
+.edit-btn:hover{opacity: 0.8}
+.form-container {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px 10px;
+  background-color: white;
+}
+.form-container fieldset{
+	padding: 0 10px;
+	box-sizing: border-box;
+	border: 1px solid #e0e0e0;
+}
+.form-container legend{color: #269abc;}
+
+.f_row{
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	align-content: flex-start;
+	margin: 6px 0;
+}
+.f_column{
+	width: 100%;
+	margin: 0 10px;
+	display: block;
+	box-sizing: border-box;
+}
+.f_column .f_txt{
+	width: 100%;
+	padding: 10px;
+	background-color: #f1f1f1;
+	font-size: 18px;
+	border: none;
+}
+.f_column .f_txt:focus{
+	background-color: #ddd;
+	outline: none;
+}
+.btn_guardar{
+	padding: 10px 0;
+	background-color: #04AA6D;
+	color: whitesmoke;
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	border: none;
+}
+.btn_guardar:hover{opacity: 0.8;}

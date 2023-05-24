@@ -1,0 +1,262 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-ene-2023, 22:44:34
+    Author     : Skyroot
+*/
+body{
+    background-color: whitesmoke;
+    height: 100vh;
+}
+.main{
+    width: 80%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.top_container{
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.filter_div, .search_div{
+    width: 100%;
+}
+.filter_div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.filter_div select{
+    width: 80px;
+    height: 30px;
+}
+.search_div{
+    display: flex;
+    justify-content: flex-end;
+}
+.search_div input,.btn_search{
+    padding: 4px 10px;
+    font-weight: bold;
+    border: 2px solid #e0e0e0;
+    outline-color: skyblue;
+    font-family: monospace;
+}
+.search_div .btn_search{background-color: #269abc;color: white;opacity: 0.8}
+
+.container_table{
+    margin: 0 auto;
+    max-height: 440px;
+    overflow-y: auto;
+}
+
+.container_table,.top_container{
+    width: 100%;
+}
+.container_table table{
+    width: 100%;
+   border-collapse: collapse;
+}
+.container_table table tr,td{
+    border: 1px solid #e0e0e0;
+    
+}
+.container_table table tbody tr:nth-child(even){background-color: #f1f1f1}
+.container_table table tbody tr:hover{background-color: #e0e0e0}
+.container_table table thead{
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #269abc;
+    color: whitesmoke;
+}
+.container_table table thead td{
+    padding: 0 10px;
+
+}
+.container_table table tbody{
+    font-size: 18px;
+}
+.container_table table tbody td{
+    padding: 10px;
+}
+.btn-act{
+    color: whitesmoke;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-act:hover{
+    text-decoration: none;
+    opacity: 0.8;
+    color: whitesmoke;
+}
+.btn-edit{background-color: #04AA6D;}
+.btn-delete{background-color: red;}
+.btn-detail{background-color: #269abc;}
+
+
+@media only screen and (max-width: 911px){
+    .container{
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .container{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
+    }
+    .top_container{
+        display: block;
+        text-align: center;
+    }
+    .filter_div, .search_div{
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+}
+
+/* Pagination links */
+.paginacion{margin-top: 20px;}
+.paginacion a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.paginacion a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/*popup form to add*/
+.open-button {
+  background-color: #269abc;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+.open-button:hover{opacity: 0.8;}
+
+/* The popup form - hidden by default */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  overflow: auto;
+}
+
+.form-popup {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  z-index: 2;
+}
+
+.form-popup .cancel{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 10px;
+	color: white;
+	font-size: 40px;
+	font-weight: bold;
+	background-color: red;
+	cursor: pointer;
+	opacity: 0.5;
+}
+.form-popup .cancel a {color: whitesmoke}
+.form-popup .cancel:hover{opacity: 0.7;}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 100%;
+  padding: 20px 10px;
+  background-color: white;
+}
+.form-container fieldset{
+	padding: 10px;
+	box-sizing: border-box;
+	margin: 10px 0;
+	border: 1px solid #e0e0e0;
+}
+.form-container legend{color: #269abc;}
+
+.f_row{
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	align-content: flex-start;
+	margin: 10px 0;
+}
+.f_column{
+	width: 100%;
+	margin: 0 10px;
+	display: block;
+	box-sizing: border-box;
+}
+.f_column .f_txt{
+	width: 100%;
+	padding: 10px;
+	background-color: #f1f1f1;
+	font-size: 18px;
+	border: none;
+}
+.f_column .f_txt:focus{
+	background-color: #ddd;
+	outline: none;
+}
+.btn_guardar{
+	padding: 14px 0;
+	background-color: #269abc;
+	color: whitesmoke;
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	border: none;
+}
+.btn_guardar:hover{opacity: 0.8;}

@@ -1,0 +1,305 @@
+@charset "ISO-8859-1";
+
+/*tabla*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{min-height: 100vh;background-color: #ddd}
+/*.main{
+    width: 100%;
+    min-height: 587px;
+    display: flex;
+    margin: 20px 0;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+-----------------------------------row-container----------------------------------
+.row-container{
+    width: 20%;
+    padding: 20px;
+    background-color: white;
+    display: block;
+    box-sizing: border-box;
+}
+.row-input{
+    width: 100%;
+    height: 28px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+}
+.row-container-btn{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.row-container-btn input{
+    width: 100%;
+    margin: 0 10px;
+    padding: 5px 0;
+    border: none;
+    cursor: pointer;
+}
+.row-container-btn input:hover{opacity: 0.8;}
+.row-container-btn input:nth-child(1){
+    background-color: #269abc;
+    color: whitesmoke;
+}
+.row-container-btn input:nth-child(2){
+    background-color: #04AA6D;
+    color: whitesmoke;
+}
+
+.main-item{
+    margin: 0 20px;
+}
+.container{
+    width: 70%;
+    padding: 10px;
+    background-color: white;
+    box-sizing: border-box;
+}*/
+.top_container{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.top_container .filter_div, .search_div{
+    width: 100%;
+}
+.filter_div{
+    display: flex;
+    align-items: flex-start;
+}
+.filter_div .filter_item { padding: 10px;border: none;cursor: pointer;color: #269abc}
+
+.filter_div .filter_item.active,.filter_item:hover{ background-color: #f1f1f1;transition: 0.2s ease-in}
+.search_div{
+    display: flex;
+    justify-content: flex-end;
+}
+.search_div input,.btn_search{
+    padding: 4px 10px;
+    font-weight: bold;
+    border: 2px solid #e0e0e0;
+    outline-color: skyblue;
+    font-family: monospace;
+}
+.search_div .btn_search{background-color: #269abc;color: white;opacity: 0.8}
+.container_table{
+    margin: 10px 0;
+    max-height: 440px;
+    overflow: auto;
+}
+/*.container_table,.top_container, table{
+    width: 100%;
+}
+.container_table table{
+    border-collapse: collapse;
+}
+.container_table table tr,td{
+    border: 1px solid #e0e0e0;
+}*/
+table thead{
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #269abc;
+    color: black;
+}
+/*.container_table table thead td{
+    padding: 0 10px;
+
+}
+.container_table table tbody{
+    font-size: 18px;
+}
+.container_table table tbody td{
+    padding: 10px;
+}*/
+/*contenedor principal*/
+.container-data{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+/*contenedor de tabla*/
+.table-responsive{
+    max-height: 750px;
+    overflow: auto;
+}
+
+.btn-act{
+    color: whitesmoke;
+    padding: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-act:hover{
+    text-decoration: none;
+    opacity: 0.8;
+    color: whitesmoke;
+}
+.btn-edit{background-color: #04AA6D;}
+.btn-delete{background-color: red;}
+.btn-detail{background-color: #269abc;}
+
+/* Pagination links */
+.paginacion{margin-top: 20px;}
+.paginacion a {
+    color: black;
+    float: left;
+    padding: 2px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.paginacion a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.paginacion a:hover:not(.active) {background-color: #ddd;}
+
+
+/* The popup form - hidden by default */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  overflow: auto;
+}
+
+.form-popup {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  z-index: 2;
+}
+
+/* Add Zoom Animation */
+.form-popup.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 100%;
+  padding: 20px 10px;
+  background-color: white;
+}
+.form-container fieldset{
+	padding: 4px 10px;
+	box-sizing: border-box;
+	margin: 4px 0;
+	border: 1px solid #e0e0e0;
+}
+.form-container fieldset legend{color: #666;}
+
+.f_row{
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	align-content: flex-start;
+	margin-bottom: 10px;
+}
+.show-passw{
+    
+    float: right;
+    /*margin-top: -24px;*/
+    margin-right: 10px;
+    color: #666;
+}
+.f_column{
+	width: 100%;
+	margin: 0 10px;
+	display: block;
+	box-sizing: border-box;
+}
+.f_column .f_txt,textarea{
+	width: 100%;
+	padding: 10px;
+	background-color: #f1f1f1;
+	font-size: 18px;
+	border: none;
+}
+.f_column .f_txt ul li{margin: 0;padding: 0}
+.f_column .f_txt:focus, textarea:focus{
+	background-color: #ddd;
+	outline: none;
+}
+
+.btn_guardar{
+	padding: 10px 0;
+	background-color: #04AA6D;
+	color: whitesmoke;
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	border: none;
+}
+.btn_guardar:hover{opacity: 0.8;}
+
+.cancel{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 10px;
+	color: white;
+	font-size: 40px;
+	font-weight: bold;
+	background-color: red;
+	cursor: pointer;
+	opacity: 0.5;
+        box-sizing: border-box;
+}
+.form-popup .cancel:hover{opacity: 0.7;}
+
+/*------------------------responsive styles---------------------*/
+@media screen and (max-width: 900px){
+    .main{
+        display: block;
+    }
+    .container{width: 95%; margin: 0 auto; box-sizing: border-box;}
+    .row-container{width: 40%;margin: 20px auto}
+}
+@media screen and (max-width: 400px){
+    .main{
+        display: block;
+    }
+    .container{width: 100%; margin: 0 auto; box-sizing: border-box;}
+    .top_container{display: block;}
+    .row-container{width: 90%;margin: 20px auto}
+    .search_div{float: none;width: 90%;margin: 5px auto; text-align: center}
+    .filter_div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .filter_div select{width: 50%;}
+}

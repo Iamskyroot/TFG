@@ -1,0 +1,562 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-ene-2023, 9:59:29
+    Author     : Skyroot
+*/
+/*body{background-color: skyblue;height: 100vh}
+.main{
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+}*/
+
+label,p,ul,li{
+    margin: 0;
+    padding: 0;
+}
+a{text-decoration: none}
+
+body{
+    background-color: #ddd;
+    min-height: 100vh;
+}
+
+/*.alert{
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    display: block;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.closealert{
+    padding: 0 4px;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: red;
+    opacity: 0.6;
+}
+
+.alert.warning {background-color: #ff9800;}
+.alert.success {background-color: #04AA6D;}
+
+.closealert,.closebtn a{color: whitesmoke;}
+
+.closealert,.closebtn:hover {
+    color: whitesmoke;
+    opacity: 0.8;
+}*/
+
+/* Add Zoom Animation */
+.alert.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+
+.container{
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+}
+.top_container{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.top_container .filter_div, .search_div{
+    width: 100%;
+}
+.filter_div{
+    display: flex;
+    align-items: flex-start;
+}
+.filter_div .filter_item { padding: 10px;border: none;cursor: pointer;color: #269abc}
+
+.filter_div .filter_item.active,.filter_item:hover{ background-color: #ddd;transition: 0.2s ease-in}
+.search_div{
+    display: flex;
+    justify-content: flex-end;
+}
+.search_div input,.btn_search{
+    padding: 4px 10px;
+    font-weight: bold;
+    border: 2px solid #e0e0e0;
+    outline-color: skyblue;
+    font-family: monospace;
+}
+.search_div .btn_search{background-color: #269abc;color: white;opacity: 0.8}
+
+.container-data{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+}
+.table-responsive{
+    max-height: 750px;
+    overflow: auto;
+}
+
+/*.container_table{
+    margin: 10px 0;
+    padding-bottom: 20px;
+    max-height: 526px;
+    overflow: auto;
+}
+
+.container_table,.top_container, table{
+    width: 100%;
+}
+.container_table table{
+   border-collapse: collapse;
+}
+.container_table table tr,td{
+    border: 1px solid #e0e0e0;
+    
+}
+.container_table table tbody tr:nth-child(even){background-color: #f1f1f1}
+.container_table table tbody tr:hover{background-color: #e0e0e0}*/
+table thead{
+    height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #269abc;
+    color: black;
+}
+
+/*.container_table table thead td{
+    padding: 0 10px;
+
+}
+.container_table table tbody{
+    font-size: 18px;
+}
+.container_table table tbody td{
+    padding: 10px;
+}*/
+.accion{
+    color: whitesmoke;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.btn-act:hover{
+    text-decoration: none;
+    opacity: 0.8;
+    color: whitesmoke;
+}
+.btn-edit{background-color: #04AA6D;}
+.btn-delete{background-color: red;}
+.btn-detail{background-color: #269abc;}
+
+
+/*//----------------------------POPUPS-------------------------------------*/
+.open-button {
+  background-color: #269abc;
+  color: white;
+  font-weight: bold;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 10px;
+  right: 30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* The popup form - hidden by default */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  overflow: auto;
+}
+
+.form-popup {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  z-index: 2;
+}
+
+/* Add Zoom Animation */
+.form-popup.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 100%;
+  padding: 20px 10px;
+  background-color: white;
+}
+.form-container fieldset{
+	padding: 0 10px;
+	box-sizing: border-box;
+	margin: 4px 0;
+	border: 1px solid #e0e0e0;
+}
+.form-container fieldset legend{color: #666;}
+
+.f_row{
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	align-content: flex-start;
+	margin-bottom: 10px;
+}
+.show-passw{
+    
+    float: right;
+    /*margin-top: -24px;*/
+    margin-right: 10px;
+    color: #666;
+}
+.f_column{
+	width: 100%;
+	margin: 0 10px;
+	display: block;
+	box-sizing: border-box;
+}
+.f_column .f_txt,textarea{
+	width: 100%;
+	padding: 10px;
+	background-color: #f1f1f1;
+	font-size: 18px;
+	border: none;
+}
+.f_column .f_txt ul li{margin: 0;padding: 0}
+.f_column .f_txt:focus, textarea:focus{
+	background-color: #ddd;
+	outline: none;
+}
+
+.btn_guardar{
+	padding: 10px 0;
+	background-color: #269abc;
+	color: whitesmoke;
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	border: none;
+}
+.btn_guardar:hover{opacity: 0.8;}
+
+.cancel{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 10px;
+	color: white;
+	font-size: 40px;
+	font-weight: bold;
+	background-color: red;
+	cursor: pointer;
+	opacity: 0.5;
+        box-sizing: border-box;
+}
+.form-popup .cancel:hover{opacity: 0.7;}
+
+
+/*RESPONSIVE*/
+@media screen and (max-width: 600px){
+    .form-popup{width: 90%; left: 5%;right: 5%}
+}
+@media only screen and (max-width: 911px){
+    .container{
+        box-sizing: border-box;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .container{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 10px;
+    }
+    .top_container{
+        display: block;
+        text-align: center;
+    }
+    .filter_div, .search_div{
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+}
+
+/* Pagination links */
+.paginacion{margin-top: 20px;}
+.paginacion a {
+    color: black;
+    float: left;
+    padding: 5px 12px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+/* Style the active/current link */
+.paginacion a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+
+/* Add a grey background color on mouse-over */
+.paginacion a:hover:not(.active) {background-color: #ddd;}
+
+/* Style the buttons that are used to open and close the accordion panel */
+
+.acordeon {
+    box-sizing: border-box;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    padding: 10px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-top: 10px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.acordeon.active{
+    display: block;
+    transition: 0.3s ease-in-out;
+    background-color: #ccc;
+    transition: 0.6s;
+}
+
+.acordeon:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+        /*max-height: 200px;*/
+    overflow: auto;
+    display: none;
+    transition: 0.4s;
+    /*    transition: max-height 0.3s ease-out;*/
+}
+
+
+.acordeon:before {
+    content: '\02C3'; /* Unicode character for "plus" sign (>) */
+    font-size: 18px;
+    color: #777;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.acordeon.active:before {
+    content: '\02C5'; /* Unicode character for "minus" sign (>) reverse */
+    font-size: 18px;
+    color: #777;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/*filter*/
+#txtBuscar {
+  background-image: url('../css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  outline-color: skyblue;
+  margin: 4px 0;
+}
+
+.lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.lista li label {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+/**/
+/*popup form to add*/
+/*.open-button {
+  background-color: #269abc;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+.open-button:hover{opacity: 0.8;}
+
+ The popup form - hidden by default 
+.modal {
+  display: none;  Hidden by default 
+  position: fixed;  Stay in place 
+  z-index: 1;  Sit on top 
+  left: 0;
+  top: 0;
+  width: 100%;  Full width 
+  height: 100%;  Full height 
+  overflow: auto;  Enable scroll if needed 
+  background-color: rgb(0,0,0);  Fallback color 
+  background-color: rgba(0,0,0,0.4);  Black w/ opacity 
+  overflow: auto;
+}
+
+.form-popup {
+  position: absolute;
+  top: 100px;
+  bottom: 0;
+  left: 25%;
+  right: 25%;
+  z-index: 2;
+}
+
+.form-popup .cancel{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 10px;
+	color: white;
+	font-size: 40px;
+	font-weight: bold;
+	background-color: red;
+	cursor: pointer;
+	opacity: 0.5;
+}
+.form-popup .cancel a {color: whitesmoke}
+.form-popup .cancel:hover{opacity: 0.7;}
+
+ Add Zoom Animation 
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+ Add styles to the form container 
+.form-container {
+  max-width: 100%;
+  padding: 20px 10px;
+  background-color: white;
+}
+.form-container fieldset{
+	padding: 10px;
+	box-sizing: border-box;
+	margin: 10px 0;
+	border: 1px solid #e0e0e0;
+}
+.form-container legend{color: #269abc;}
+.receta{max-height: 220px; overflow-y: auto}
+.f_row{
+	display: flex;
+	width: 100%;
+	align-items: flex-start;
+	align-content: flex-start;
+	margin: 10px 0;
+}
+.row_btn{padding: 2px 4px;margin-top: 20px; border: none;cursor: pointer}
+.row_btn:hover{background-color: #ddd}
+.f_column{
+	width: 100%;
+	margin: 0 10px;
+	display: block;
+	box-sizing: border-box;
+}
+.f_column .f_txt{
+	width: 100%;
+	padding: 10px;
+	background-color: #f1f1f1;
+	font-size: 18px;
+	border: none;
+}
+.f_column .f_txt:focus{
+	background-color: #ddd;
+	outline: none;
+}
+.btn_guardar{
+	padding: 14px 0;
+        margin-top: 20px;
+	background-color: #269abc;
+	color: whitesmoke;
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	border: none;
+}
+.btn_guardar:hover{opacity: 0.8;}*/
+
+

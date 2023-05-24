@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-ene-2023, 22:44:34
+    Author     : Skyroot
+*/
+body{background-color: whitesmoke; height: 100vh}
+.main{
+    width: 100%;
+    min-height: 587px;
+    display: flex;
+    margin: 20px 0;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    
+}
+
+/*-----------------------------------row-container----------------------------------*/
+.aside{
+    width: 20%;
+    padding: 20px;
+    background-color: white;
+    display: block;
+    box-sizing: border-box;
+}
+.aside{
+    width: 30%;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+}
+.aside .aside-input{
+    width: 100%;
+    padding: 8px 18px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+}
+.acordeon{
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding:  8px 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin-bottom: 10px;
+}
+.acordeon:before{
+    content: "\02C3";
+    font-size: 16px;
+    font-weight: bolder;
+    margin-right: 20px;
+}
+.acordeon.active, .acordeon:hover{background-color: #e0e0e0}
+.acordeon.active:before{content: "\02C5"; }
+.panel{
+  background-color: white;
+  display: none;
+  overflow: hidden;}
+
+.aside-btn{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+.aside-btn input{
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    cursor: pointer;
+}
+.aside-btn input:hover{opacity: 0.8;}
+.aside-btn input:nth-child(1){
+    background-color: #269abc;
+    color: whitesmoke;
+}
+
+.main-item{
+    margin: 0 20px;
+}
+.main-container{
+    width: 60%;
+    padding: 10px;
+    background-color: white;
+    box-sizing: border-box;
+    background-color: white;
+    overflow-x: auto;
+}
+.main-container table{
+    width: 100%;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+.main-container table thead{background-color: #269abc;color: whitesmoke;font-weight: bold}
+.main-container table tr,td{border: 1px solid #e0e0e0;padding: 10px}
+
+/*------------------------responsive styles---------------------*/
+@media screen and (max-width: 900px){
+    .main{
+        width: 100%;
+        display: block;
+    }
+    .main-container{width: 95%; margin: 0 auto; box-sizing: border-box;}
+    .aside{width: 40%;margin: 20px auto}
+}
+@media screen and (max-width: 400px){
+    .main{
+        width: 100%;
+        display: block;
+    }
+    .main-container{width: 100%; margin: 0 auto; box-sizing: border-box;}
+    .main-container horario,table{width: 100%; box-sizing: border-box;}
+    .aside{display: block;}
+    .aside{width: 90%;margin: 20px auto}
+
+}
