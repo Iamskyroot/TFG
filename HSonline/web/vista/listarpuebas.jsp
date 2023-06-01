@@ -27,7 +27,7 @@
 //                    out.print("<li><label><input type='checkbox' name='p'> "+rs.getString("nombre")+"<label></li>");
 
     %>
-    <li><label><input type='checkbox' name='p' value="<%= rs.getString("nombre")%>"> <%=rs.getString("nombre")%></label></li>
+    <li><label><input type='checkbox' name='p' value="<%= rs.getString("prueba")%>"> <%=rs.getString("prueba")%></label></li>
             <%
                 }
             %>

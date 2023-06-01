@@ -306,7 +306,7 @@
 
                             <div class="f_row">
                                 <input type="submit" name="accion" class="btn_guardar" value="Guardar"/>
-                                <input type="submit" name="accion" id="actualizarPaciente" class="btn_guardar" style="background-color: #269abc" value="Actualizar"/>
+                                <input type="submit" name="accion" id="actualizarPaciente" class="btn_guardar" style="background-color: #04AA6D" value="Actualizar"/>
                             </div>
 
                         </form>
