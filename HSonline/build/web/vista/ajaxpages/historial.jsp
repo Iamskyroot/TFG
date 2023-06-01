@@ -30,7 +30,7 @@
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
             LocalDate fechaActual = LocalDate.now();
-            Connection conn = con.conectar();
+//            Connection conn = con.conectar();
             LocalDateTime fecha = LocalDateTime.now();
             int y = fecha.getYear();
             int m = fecha.getMonthValue();
@@ -64,7 +64,7 @@
                     throw new AssertionError();
             }
             
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             
             while (rs.next()) {
@@ -83,7 +83,7 @@
     </tr>
     <%
         }
-        
+        con.conectar().close();
     %>
 
 

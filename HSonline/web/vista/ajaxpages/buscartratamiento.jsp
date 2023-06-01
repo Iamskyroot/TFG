@@ -24,11 +24,10 @@
             String accion = request.getParameter("accion");
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
             Statement st = null;
             String sql = "";
             try {
-                st = conn.createStatement();
+                st = con.conectar().createStatement();
                 switch (accion) {
                     case "buscar":
                         sql = "SELECT * FROM prescripciones WHERE medicamento LIKE '%" + datos + "%' OR enfermedad LIKE '%" + datos + "%'"
@@ -65,6 +64,7 @@
         } catch (Exception e) {
             System.out.println("Error al buscar o eliminar presscripcion. " + e.getMessage());
         }
+        con.conectar().close();
     %>
 
 

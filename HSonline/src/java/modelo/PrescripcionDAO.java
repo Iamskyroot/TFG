@@ -37,6 +37,7 @@ public class PrescripcionDAO extends Conexion {
 
             }
             System.out.println("Se han insertado " + listaP.size() + " prescripciones");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al insertar prescripciones " + e.getMessage());
             return 0;
@@ -64,7 +65,7 @@ public class PrescripcionDAO extends Conexion {
                 }
             }
             System.out.println("Datos de tratamientos encontrados");
-
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar prescripciones " + e.getMessage());
         }
@@ -86,6 +87,7 @@ public class PrescripcionDAO extends Conexion {
 
             ps.execute();
             System.out.println("Prescripcion actualizado con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar prescripcion " + e.getMessage());
             return false;
@@ -102,6 +104,7 @@ public class PrescripcionDAO extends Conexion {
 
             ps.execute();
             System.out.println("Prescripcion eliminada con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al eliminar prescripcion " + e.getMessage());
             return false;

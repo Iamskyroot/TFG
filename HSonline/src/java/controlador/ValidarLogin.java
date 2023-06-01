@@ -80,9 +80,6 @@ public class ValidarLogin extends HttpServlet {
                         response.sendRedirect("Controlador?menu=Inicio&accion=login");
 
                     } else {
-//                    request.setAttribute("error", "Usuario o contraseña no válidos.");
-//                    request.getRequestDispatcher("Controlador?menu=Login").forward(request, response);
-                        //response.sendRedirect("Controlador?menu=Login&msg=invalid");
                         response.sendRedirect("Controlador?menu=Login&accion=logerr");
                     }
                 }

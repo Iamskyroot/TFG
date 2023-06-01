@@ -25,11 +25,10 @@
 //                String paciente = request.getParameter("idPa");
                 String consulta = request.getParameter("idCo");
                 Conexion con = new Conexion();
-                Connection conn = con.conectar();
 
                 String sql = "SELECT * FROM pruebas_paciente WHERE consulta_id="+consulta;
 
-                Statement st = conn.createStatement();
+                Statement st = con.conectar().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
 
@@ -39,6 +38,7 @@
 
 
             <%        }
+                con.conectar().close();
             %>
         </ul>
 

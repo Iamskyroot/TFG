@@ -23,19 +23,19 @@
             Paciente usu = (Paciente) session.getAttribute("usuario");
             String datos = request.getParameter("doc");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
+//            Connection conn = con.conectar();
             LocalDate fechaActual = LocalDate.now();
             LocalDateTime fecha = LocalDateTime.now();
             int y = fecha.getYear();
             int m = fecha.getMonthValue();
-            int d = fecha.getDayOfMonth();
-            int d5 = fecha.getDayOfMonth() + 7;
+            int d = fecha.getDayOfMonth()-1;
+            int d5 = fecha.getDayOfMonth()+4;
             int h = fecha.getHour();
             int min = fecha.getMinute();
             int seg = fecha.getSecond();
 
             String sql = "SELECT * FROM citas WHERE (documento='"+usu.getDocumento()+"') AND (fecha_inicio BETWEEN '" + fecha.of(y, m, d, h, min, seg) + "' AND '" + fecha.of(y, m, d5, h, min, seg) + "')";
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             if(rs.last()) {
 
@@ -48,6 +48,8 @@
 
         %>
         <p>Ninguna cita pendiente</p>
-        <%}%>
+        <% }
+            con.conectar().close();
+        %>
     </body>
 </html>

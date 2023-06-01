@@ -286,7 +286,7 @@
                                     <div class="f_column">
                                         <label>Contraseña</label>
                                         <input type="password" name="psw" id="passw" class="f_txt" placeholder="Contraseña">
-                                        <i class="fas fa-eye-slash show-passw" id="showPassw" onclick="showPassword(this, document.getElementById('passw'))"></i>
+                                        <!--<i class="fas fa-eye-slash show-passw" id="showPassw" onclick="showPassword(this, document.getElementById('passw'))"></i>-->
                                     </div>
                                 </div>
 
@@ -298,10 +298,10 @@
                                     <div class="f_column">
                                         <label>Repita la contraseña</label>
                                         <input type="password" name="psw2" id="passw2" class="f_txt" placeholder="Contraseña">
-                                        <i class="fas fa-eye-slash show-passw" id="showPassw" onclick="showPassword(this, document.getElementById('passw2'))"></i>
+                                        <!--<i class="fas fa-eye-slash show-passw" id="showPassw" onclick="showPassword(this, document.getElementById('passw2'))"></i>-->
                                     </div>
                                 </div>
-
+                                <label><input type="checkbox" onclick="showPassword()"> Mostrar contraseña</label>
                             </fieldset>
 
                             <div class="f_row">

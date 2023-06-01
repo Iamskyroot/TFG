@@ -23,7 +23,7 @@
         <%
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
+//            Connection conn = con.conectar();
 
             String sql;
             switch (datos) {
@@ -41,7 +41,7 @@
 
             }
 
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             rs.afterLast();
             while (rs.previous()) {
@@ -63,6 +63,7 @@
     </tr>
     <%
         }
+        con.conectar().close();
     %>
 </body>
 </html>

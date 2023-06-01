@@ -33,6 +33,7 @@ public class UsuarioDAO extends Conexion {
             
             ps.execute();
             System.out.println("Usuario registrado");
+            conectar().close();
             return usuario;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -68,6 +69,7 @@ public class UsuarioDAO extends Conexion {
 //                usu.setCod_registro(rs.getInt("codigo_registro"));
 //                usu.setEspecialidad(rs.getString("especialidad"));   
             }
+            conectar().close();
         } catch (SQLException e) {
             try {
                 conectar().close();
@@ -98,7 +100,7 @@ public class UsuarioDAO extends Conexion {
                     existe = false;
                 }
             }
-            
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error de consulta de usuario: "+e.getMessage());
             try {

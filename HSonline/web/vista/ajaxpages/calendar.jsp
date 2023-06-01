@@ -30,5 +30,6 @@
             }
             out.print(jsonArray);
             
+        con.conectar().close();
    
 %>

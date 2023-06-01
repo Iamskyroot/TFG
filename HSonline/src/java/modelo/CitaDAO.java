@@ -86,6 +86,7 @@ public class CitaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Numero de registros en citas="+getNumeroFilas());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar citas:\n"+e.getMessage());
         }
@@ -121,6 +122,7 @@ public class CitaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Numero de registros en citas="+getNumeroFilas());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar citas:\n"+e.getMessage());
         }
@@ -155,6 +157,7 @@ public class CitaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Numero de registros en citas="+getNumeroFilas());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar citas:\n"+e.getMessage());
         }
@@ -189,6 +192,7 @@ public class CitaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Numero de registros en citas="+getNumeroFilas());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar citas:\n"+e.getMessage());
         }
@@ -223,6 +227,7 @@ public class CitaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Numero de registros en citas="+getNumeroFilas());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar citas:\n"+e.getMessage());
         }

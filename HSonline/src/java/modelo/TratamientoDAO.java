@@ -47,6 +47,7 @@ public class TratamientoDAO extends Conexion {
                 t.setCodigo_tratamiento(rs.getInt(1));
             }
             System.out.println("Tratamiento creado con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al crear tratamiento "+e.getMessage());
             return false;
@@ -103,7 +104,7 @@ public class TratamientoDAO extends Conexion {
                 setNumeroFilas(rs.getInt(1));
             }
             System.out.println("Datos de tratamientos encontrados "+datos.size());
-            
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar tratamientos "+e.getMessage());
         }

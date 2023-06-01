@@ -8,6 +8,8 @@ package config;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,10 +30,11 @@ public class Conexion {
             if (con != null) {
                 System.out.println("Conectado!");
             }
+        return con;
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error de conexion: "+e.getMessage());
+            return null;
         }
-        return con;
     }
 
     

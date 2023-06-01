@@ -43,6 +43,7 @@ public class HospitalizacionDAO extends Conexion {
             ps.setObject(3, estado);
             ps.execute();
             System.out.println("Paciente "+nombre+" hospitalizado con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al hospitalizar "+e.getMessage());
             return false;
@@ -64,6 +65,7 @@ public class HospitalizacionDAO extends Conexion {
             ps.setObject(6, paciente);
             ps.executeUpdate();
             System.out.println("Datos de hospitalizacion actualizados");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar hospitalizacion:\n"+e.getMessage());
             return false;
@@ -91,6 +93,7 @@ public class HospitalizacionDAO extends Conexion {
                         rs.getString("fecha_alta"));
             }
             System.out.println("Datos de hospitalizacion actualizados");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar hospitalizacion:\n"+e.getMessage());
         }
@@ -118,6 +121,7 @@ public class HospitalizacionDAO extends Conexion {
                 lista.add(h);
             }
             System.out.println("Busqueda exitosa");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al buscar datos:\n"+e.getMessage());
             return null;
@@ -127,7 +131,7 @@ public class HospitalizacionDAO extends Conexion {
     
     public List<Hospitalizacion> listarHospitalizados(int offset,int numeroFilas){
         List<Hospitalizacion> listaH = new ArrayList<>();
-        String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM hospitalizacion LIMIT "+offset+", "+numeroFilas;
+        String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM hospitalizacion WHERE estado != 'alta' LIMIT "+offset+", "+numeroFilas;
         try {
             ps = conectar().prepareStatement(sql);
             rs = ps.executeQuery();
@@ -149,6 +153,7 @@ public class HospitalizacionDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Imprimiendo hospitalizados con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar hospitalizados: "+e.getMessage());
             return null;

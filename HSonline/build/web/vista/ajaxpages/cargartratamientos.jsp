@@ -24,11 +24,11 @@
             <%
                 String nombre = request.getParameter("nombre");
                 Conexion con = new Conexion();
-                Connection conn = con.conectar();
+//                Connection conn = con.conectar();
 
                 String sql = "SELECT * FROM tratamiento";
 
-                Statement st = conn.createStatement();
+                Statement st = con.conectar().createStatement();
                 ResultSet rs = st.executeQuery(sql);
                 while (rs.next()) {
 
@@ -38,6 +38,7 @@
 
 
             <%        }
+                con.conectar().close();
             %>
         </ul>
 

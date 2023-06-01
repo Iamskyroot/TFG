@@ -7,6 +7,7 @@ package modelo;
 
 import config.Conexion;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;
@@ -50,7 +52,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;
@@ -68,7 +71,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;
@@ -87,7 +91,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;
@@ -106,7 +111,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;
@@ -125,7 +131,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;
@@ -144,7 +151,8 @@ public class HorarioDAO extends Conexion {
                 h.setFin(rs.getString("fin"));
                 datos.add(h);
             }
-        } catch (Exception e) {
+            conectar().close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return datos;

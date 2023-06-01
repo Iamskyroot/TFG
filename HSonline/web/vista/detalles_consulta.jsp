@@ -29,7 +29,7 @@
                             <h2>HOSPITAL DE SAMPAKA</h2>
                         </div>
                         <div class="historial">
-                            <span><b>Consulta Nº:</b> ${datos.get(1).getCodigo()} </span>
+                            <span><b>IDº:</b>${datos.get(1).getCodigo()} </span>
                             <span><b>Medico:</b> ${sanitario.getNombre()} </span>
                             <span><b>Especialidad:</b> ${sanitario.getEspecialidad()}</span>
                         </div>

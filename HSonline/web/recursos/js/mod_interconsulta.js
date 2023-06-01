@@ -232,24 +232,25 @@ function closeForm(id) {
 
 
 //SHOW PASSWORD
-function showPassword(id, input) {
-    //toggle type attribute
-    const type = input.getAttribute("type");
+//function showPassword(id, input) {
+//    //toggle type attribute
+//    const type = input.getAttribute("type");
+//
+//    if (type === "password") {
+//
+//        input.setAttribute("type", "text");
+//        //toggle the icon eye
+//        id.classList.add("fa-eye");
+//        id.classList.remove("fa-eye-slash");
+//        id.style.color = "black";
+//    } else {
+//        input.setAttribute("type", "password");
+//        id.classList.remove("fa-eye");
+//        id.classList.add("fa-eye-slash");
+//        id.style.color = "#666";
+//    }
+//}
 
-    if (type === "password") {
-
-        input.setAttribute("type", "text");
-        //toggle the icon eye
-        id.classList.add("fa-eye");
-        id.classList.remove("fa-eye-slash");
-        id.style.color = "black";
-    } else {
-        input.setAttribute("type", "password");
-        id.classList.remove("fa-eye");
-        id.classList.add("fa-eye-slash");
-        id.style.color = "#666";
-    }
-}
 
 //MAKE USER AUTOMATICALLY
 function makeUser(length, input) {

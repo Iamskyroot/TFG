@@ -49,6 +49,7 @@ public class SanitarioDAO extends Conexion {
             ps.setObject(10, s.getContrasena());
             ps.execute();
             System.out.println("Sanitario registrado");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al rgistrar sanitario: "+e.getMessage());
             return false;
@@ -73,6 +74,7 @@ public class SanitarioDAO extends Conexion {
             ps.setObject(9, s.getDocumento());
             ps.execute();
             System.out.println("Sanitario "+s.getDocumento()+" actualizado");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar sanitario: "+e.getMessage());
             return false;
@@ -108,6 +110,7 @@ public class SanitarioDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Listando sanitarios con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar sanitarios: "+e.getMessage());
             return null;
@@ -142,6 +145,7 @@ public class SanitarioDAO extends Conexion {
                   s.setContrasena(rs.getString("contrasena"));
             }
             System.out.println("Sanitario encontrado "+s.getNombre());
+            conectar().close();
         } catch (SQLException e) {
             try {
                 conectar().close();
@@ -175,6 +179,7 @@ public class SanitarioDAO extends Conexion {
                         rs.getString(11)
                 );
             }
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al consultar medico ");
         }
@@ -192,6 +197,7 @@ public class SanitarioDAO extends Conexion {
             ps.setObject(4, h.getFin());
             ps.executeUpdate();
             System.out.println("Horario asignado al personal "+h.getSanitatio_id());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

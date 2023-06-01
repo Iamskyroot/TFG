@@ -26,8 +26,7 @@
             String accion = request.getParameter("accion");
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = null;
             String sql = "";
             switch(accion){
@@ -62,6 +61,7 @@
         </td>
     </tr>
     <%        }
+            con.conectar().close();
     %>
 
 

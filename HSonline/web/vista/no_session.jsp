@@ -6,6 +6,6 @@
 
 <%
     if (session.getAttribute("usuario") == null) {
-        response.sendRedirect("Controlador?menu=Login&accion=0");
+        response.sendRedirect("Controlador?menu=index");
     }
 %>

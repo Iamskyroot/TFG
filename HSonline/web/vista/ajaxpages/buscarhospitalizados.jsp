@@ -24,11 +24,10 @@
         <%
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
 
             String sql = "SELECT * FROM hospitalizacion WHERE nombre LIKE '%" + datos + "%' OR idHospitalizacion LIKE '%" + datos+"%' OR estado LIKE '%"+datos+"%'";
 
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
 
@@ -46,6 +45,7 @@
     </tr>
     <%
         }
+        con.conectar().close();
     %>
 
 

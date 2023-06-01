@@ -134,13 +134,14 @@ a{
     flex: 30%;
     padding: 10px 20px;
     /*background-color: #ddd;*/
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);*/
     box-sizing: border-box;
 }
 .a-item{
     padding: 10px;
-    background-color: orange;
+    background-color: #269abc;
     margin-bottom: 10px;
+    border-radius: 5px;
 }
 .main-content{
     flex: 70%;
@@ -265,8 +266,10 @@ a{
 /* Create four equal columns that floats next to each other */
 .column {
   float: left;
-  width: 25%;
-  min-height:26%;
+  width: 24%;
+  min-height:420px;
+  margin: 0 6px;
+  box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
 }
 
 /* Clear floats after rows */

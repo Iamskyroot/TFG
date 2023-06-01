@@ -11,14 +11,14 @@
 <%
 //            String nombre = request.getParameter("nombre");
     Conexion con = new Conexion();
-    Connection conn = con.conectar();
+//    Connection conn = con.conectar();
     String datos = request.getParameter("datos");
 
     String sql = "SELECT * FROM enfermedad e, sintoma s, enfermedad_sintoma es "
             + "WHERE (e.nombre=es.enfermedad_id AND s.idSintoma=es.sintoma_id) AND s.descripcion LIKE '%" + datos + "%'";
     try {
 
-        Statement st = conn.createStatement();
+        Statement st = con.conectar().createStatement();
         ResultSet rs = st.executeQuery(sql);
 %>
 <!--<input type="text" id="txtBuscar" onkeyup="buscarTratamientos()" placeholder="Buscar enfermedad.." title="Escriba un tratamiento">-->
@@ -37,4 +37,5 @@
     } catch (Exception e) {
         System.out.println("Error al buscar sugerencias. " + e.getMessage());
     }
+    con.conectar().close();
 %>

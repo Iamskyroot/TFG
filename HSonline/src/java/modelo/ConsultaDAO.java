@@ -70,7 +70,8 @@ public class ConsultaDAO extends Conexion {
             ps.setObject(10, c.getMedico_id());
             ps.setObject(11, c.getFecha_consulta());
             ps.executeUpdate();
-//            System.out.println("IdP="+codPaciente);
+            System.out.println("Consulta registrada. IdP="+codPaciente);
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al guardar consulta:\n" + e.getMessage());
             return false;
@@ -96,6 +97,7 @@ public class ConsultaDAO extends Conexion {
             ps.setObject(9, c.getFecha_consulta());
             ps.setObject(10, c.getMedico_id());
             ps.executeUpdate();
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar consulta:\n" + e.getMessage());
         }
@@ -111,6 +113,7 @@ public class ConsultaDAO extends Conexion {
 
             ps.executeUpdate();
             System.out.println("Consulta " + codigo + " eliminada");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al eliminar consulta:\n" + e.getMessage());
             return false;
@@ -139,6 +142,7 @@ public class ConsultaDAO extends Conexion {
                 c.setFecha_consulta(rs.getString("fecha_consulta"));
                 c.setMedico_id(rs.getInt("medico_id"));
             }
+            conectar().close();
             return c;
         } catch (SQLException e) {
             System.out.println("Error al buscar paciente:\n" + e.getMessage());
@@ -156,6 +160,7 @@ public class ConsultaDAO extends Conexion {
             ps.setObject(2, id);
             ps.execute();
             System.out.println("Estado de la consulta "+id+" cambiado");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al cambiar estado "+e.getMessage());
         }
@@ -196,7 +201,7 @@ public class ConsultaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Inprimiendo consultas");
-
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar consultas:\n" + e.getMessage());
         }
@@ -238,7 +243,7 @@ public class ConsultaDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Inprimiendo consultas");
-
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar consultas:\n" + e.getMessage());
         }
@@ -269,7 +274,7 @@ public class ConsultaDAO extends Conexion {
             }
 
             System.out.println("Inprimiendo pruebas ordenadas");
-
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar pruebas:\n" + e.getMessage());
         }
@@ -295,7 +300,7 @@ public class ConsultaDAO extends Conexion {
             }
 
             System.out.println("Inprimiendo tratamientos");
-
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar tratamientos:\n" + e.getMessage());
         }
@@ -312,6 +317,10 @@ public class ConsultaDAO extends Conexion {
             ps = conectar().prepareStatement(sql);
             ps.setObject(1, id);
             rs = ps.executeQuery();
+            if(rs.next()){
+               consulta.setCodigo(rs.getInt(1));
+            }
+            conectar().close();
             return consulta;
         } catch (SQLException e) {
             System.out.println("Error al buscar paciente:\n" + e.getMessage());
@@ -332,7 +341,7 @@ public class ConsultaDAO extends Conexion {
             ps.setObject(4, codigo);
             ps.executeUpdate();
             System.out.println("Actualizacion de consulta con exito");
-
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar consulta:\n" + e.getMessage());
         }
@@ -351,6 +360,7 @@ public class ConsultaDAO extends Conexion {
             ps.executeUpdate();
 
             System.out.println(" pruebas asignadas con exito");
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al insertar pruebas " + e.getMessage());
             return 0;

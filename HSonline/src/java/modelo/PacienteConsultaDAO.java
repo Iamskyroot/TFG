@@ -60,6 +60,7 @@ public class PacienteConsultaDAO extends Conexion {
                 datos.add(c);
 
             }
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar paciente:\n" + e.getMessage());
         }
@@ -79,7 +80,7 @@ public class PacienteConsultaDAO extends Conexion {
             ps.setObject(5, codigo);
             ps.executeUpdate();
             System.out.println("Actualizacion de consulta con exito");
-            
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar consulta:\n" + e.getMessage());
         }
@@ -184,7 +185,7 @@ public class PacienteConsultaDAO extends Conexion {
                 prescripciones.add(pres);
             }
             System.out.println("Datos de tratamientos encontrados");
-            
+            conectar().close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

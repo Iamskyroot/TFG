@@ -25,7 +25,6 @@ public class PacienteDAO extends Conexion {
     
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    private final Connection con = conectar();
     
     private int numeroFilas;
 
@@ -52,7 +51,7 @@ public class PacienteDAO extends Conexion {
             ps.setObject(5, p.getDireccion());
             ps.setObject(6, p.getTelefono());
             ps.executeUpdate();
-            
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al guardar paciente:\n"+e.getMessage());
         }
@@ -97,6 +96,7 @@ public class PacienteDAO extends Conexion {
             ps.executeUpdate();
             System.out.println("Datos de paciente "+p.getDocumento()+" actualizados");
 //            con.close();
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al actualizar paciente:\n"+e.getMessage());
             
@@ -131,6 +131,7 @@ public class PacienteDAO extends Conexion {
 //                datos.add(p);
             }
             System.out.println("Busqueda exitosa ID="+p.getDocumento());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al buscar paciente:\n"+e.getMessage());
             return null;
@@ -166,6 +167,7 @@ public class PacienteDAO extends Conexion {
             if (rs.next()) {
                 this.numeroFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al listar paciente:\n"+e.getMessage());
         }
@@ -201,6 +203,7 @@ public class PacienteDAO extends Conexion {
                 this.numeroFilas = rs.getInt(1);
             }
             System.out.println("Filas: "+getNumeroFilas());
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al filtrar paciente:\n"+e.getMessage());
         }
@@ -218,11 +221,11 @@ public class PacienteDAO extends Conexion {
             ps.setObject(1, doc);
             rs = ps.executeQuery();
             while(rs.next()) {
-                if (!rs.getString("documento").equals(null)) {
+                if (rs.getString("documento") != null) {
                     existe=true;
                 }
             }
-            
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al buscar paciente:\n"+e.getMessage());
             
@@ -262,6 +265,7 @@ public class PacienteDAO extends Conexion {
 //                usu.setCod_registro(rs.getInt("codigo_registro"));
 //                usu.setEspecialidad(rs.getString("especialidad"));   
             }
+            conectar().close();
         } catch (SQLException e) {
             try {
                 conectar().close();
@@ -286,6 +290,7 @@ public class PacienteDAO extends Conexion {
                 nombre = rs.getString("nombre");
             }
             System.out.println("Paciente: "+nombre);
+            conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al obtener el nombre "+e.getMessage());
         }

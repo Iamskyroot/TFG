@@ -26,11 +26,10 @@
             String nombre = request.getParameter("nombre");
             String userType = request.getParameter("type");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
 
             String sql = "SELECT * FROM paciente WHERE nombre LIKE '%" + nombre + "%'";
 
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
 
@@ -57,6 +56,7 @@
     </tr>
     <%
         }
+        con.conectar().close();
     %>
 
 

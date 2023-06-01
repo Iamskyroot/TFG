@@ -23,11 +23,11 @@
         <%
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
-            Connection conn = con.conectar();
+//            Connection conn = con.conectar();
 
             String sql = "SELECT * FROM prescripciones WHERE idPrescripcion=" + datos;
 
-            Statement st = conn.createStatement();
+            Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
 
@@ -69,6 +69,7 @@
         </form>
         <%
             }
+            con.conectar().close();
         %>
 
 
