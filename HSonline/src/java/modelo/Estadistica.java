@@ -27,8 +27,24 @@ public class Estadistica extends Conexion {
             if (rs.next()) {
                 numFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (Exception e) {
             System.out.println("Error al consultar citas "+e.getMessage());
+        }
+        return numFilas;
+    }
+    public int getPacientes(){
+        String sql = "SELECT COUNT(idPaciente) FROM paciente";
+        int numFilas = 0;
+        try {
+            st = conectar().createStatement();
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                numFilas = rs.getInt(1);
+            }
+            conectar().close();
+        } catch (Exception e) {
+            System.out.println("Error al consultar pacientes "+e.getMessage());
         }
         return numFilas;
     }
@@ -42,6 +58,7 @@ public class Estadistica extends Conexion {
             if (rs.next()) {
                 numFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (Exception e) {
             System.out.println("Error al consultar sanitarios "+e.getMessage());
         }
@@ -57,6 +74,7 @@ public class Estadistica extends Conexion {
             if (rs.next()) {
                 numFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (Exception e) {
             System.out.println("Error al consultar tratamientos "+e.getMessage());
         }
@@ -72,6 +90,7 @@ public class Estadistica extends Conexion {
             if (rs.next()) {
                 numFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (Exception e) {
             System.out.println("Error al consultar hospitalizados "+e.getMessage());
         }
@@ -87,6 +106,7 @@ public class Estadistica extends Conexion {
             if (rs.next()) {
                 numFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (Exception e) {
             System.out.println("Error al consultar consultas "+e.getMessage());
         }
@@ -102,6 +122,7 @@ public class Estadistica extends Conexion {
             if (rs.next()) {
                 numFilas = rs.getInt(1);
             }
+            conectar().close();
         } catch (Exception e) {
             System.out.println("Error al consultar hc "+e.getMessage());
         }

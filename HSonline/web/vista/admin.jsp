@@ -145,10 +145,10 @@
                         <div class="col-lg-4 col-md-6 p-2">
                             <div class="card border-primary rounded-0">
                                 <div class="card-header bg-primary rounded-0 c1">
-                                    <h5 class="card-title text-white mb-1">Total citas</h5>
+                                    <h5 class="card-title text-white mb-1">Pacientes</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="display-4 font-weight-bold text-primary text-center">${citas}</h1>
+                                    <h1 class="display-4 font-weight-bold text-primary text-center"><i class="fas fa-calendar" style="color: #007bff;"></i> ${pacientes}</h1>
                                 </div>
                             </div>
                         </div>
@@ -156,10 +156,10 @@
                         <div class="col-lg-4 col-md-6 p-2">
                             <div class="card border-success rounded-0">
                                 <div class="card-header bg-success rounded-0">
-                                    <h5 class="card-title text-white mb-1">Total tratamientos</h5>
+                                    <h5 class="card-title text-white mb-1">Tratamientos</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="display-4 font-weight-bold text-success text-center">${tratamientos}</h1>
+                                    <h1 class="display-4 font-weight-bold text-success text-center"><i class="fas fa-pills" style="color: #28a745;"></i> ${tratamientos}</h1>
                                 </div>
                             </div>
                         </div>
@@ -167,10 +167,10 @@
                         <div class="col-lg-4 p-2">
                             <div class="card border-danger rounded-0">
                                 <div class="card-header bg-danger rounded-0">
-                                    <h5 class="card-title text-white mb-1">Total consultas</h5>
+                                    <h5 class="card-title text-white mb-1">Consultas</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="display-4 font-weight-bold text-danger text-center">${consultas}</h1>
+                                    <h1 class="display-4 font-weight-bold text-danger text-center"><i class="fas fa-stethoscope" style="color: #dc3545;"></i> ${consultas}</h1>
                                 </div>
                             </div>
                         </div>
@@ -182,10 +182,10 @@
                         <div class="col-lg-4 col-md-6 p-2">
                             <div class="card border-primary rounded-0">
                                 <div class="card-header bg-primary rounded-0">
-                                    <h5 class="card-title text-white mb-1">Total personal sanitario</h5>
+                                    <h5 class="card-title text-white mb-1">Personal sanitario</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="display-4 font-weight-bold text-primary text-center">${personal}</h1>
+                                    <h1 class="display-4 font-weight-bold text-primary text-center"><i class="fas fa-user-md" style="color: #007bff;"></i> ${personal}</h1>
                                 </div>
                             </div>
                         </div>
@@ -193,10 +193,10 @@
                         <div class="col-lg-4 col-md-6 p-2">
                             <div class="card border-success rounded-0">
                                 <div class="card-header bg-success rounded-0">
-                                    <h5 class="card-title text-white mb-1">Total hospitalizaciones</h5>
+                                    <h5 class="card-title text-white mb-1">Hospitalizaciones</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="display-4 font-weight-bold text-success text-center">${hospitalizados}</h1>
+                                    <h1 class="display-4 font-weight-bold text-success text-center"><i class="fas fa-procedures" style="color: #28a745;"></i> ${hospitalizados}</h1>
                                 </div>
                             </div>
                         </div>
@@ -204,10 +204,21 @@
                         <div class="col-lg-4 p-2">
                             <div class="card border-danger rounded-0">
                                 <div class="card-header bg-danger rounded-0">
-                                    <h5 class="card-title text-white mb-1">Total historias clinicas</h5>
+                                    <h5 class="card-title text-white mb-1">Historias clinicas</h5>
                                 </div>
                                 <div class="card-body">
-                                    <h1 class="display-4 font-weight-bold text-danger text-center">${hc}</h1>
+                                    <h1 class="display-4 font-weight-bold text-danger text-center"><i class="fas fa-file-alt" style="color: #dc3545;"></i> ${hc}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6 p-2">
+                            <div class="card border-primary rounded-0">
+                                <div class="card-header bg-primary rounded-0 c1">
+                                    <h5 class="card-title text-white mb-1">Citas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="display-4 font-weight-bold text-primary text-center"><i class="fas fa-calendar" style="color: #007bff;"></i> ${citas}</h1>
                                 </div>
                             </div>
                         </div>

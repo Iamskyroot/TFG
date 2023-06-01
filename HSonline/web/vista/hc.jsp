@@ -165,8 +165,8 @@
                                     <c:forEach items="${historias}" var="h">
                                         <tr>
                                             <td>${h.getNombre_hc()}</td>
-                                            <td><a href="">${h.getConsulta_id()}</a></td>
-                                            <td><a href="">${h.getPaciente_id()}</a></td>
+                                            <td><a href="CtrlHistorial?menu=Historial&accion=Mostrar&hId=${h.getNombre_hc()}&codPaciente=${h.getPaciente_id()}&codConsulta=${h.getConsulta_id()}&mId=${h.getMedico_id()}">${h.getConsulta_id()}</a></td>
+                                            <td><a href="CtrlHistorial?menu=Historial&accion=Mostrar&hId=${h.getNombre_hc()}&codPaciente=${h.getPaciente_id()}&codConsulta=${h.getConsulta_id()}&mId=${h.getMedico_id()}">${h.getPaciente_id()}</a></td>
                                             <td>${h.getFecha()}</td>
                                             <td><a href="CtrlHistorial?menu=Historial&accion=Mostrar&hId=${h.getNombre_hc()}&codPaciente=${h.getPaciente_id()}&codConsulta=${h.getConsulta_id()}&mId=${h.getMedico_id()}" class="btn btn-info"><i class="fas fa-eye"></i></a></td>
                                             <!--<td><button><a href="#"><i class="fas fa-edit"></i></a></button></td>-->

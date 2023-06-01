@@ -71,6 +71,7 @@ public class Controlador extends HttpServlet {
                 usu = (Usuario) request.getAttribute("usuario");
                 request.setAttribute("usuario", usu);
                 request.setAttribute("citas", estadistica.getCitas());
+                request.setAttribute("pacientes", estadistica.getPacientes());
                 request.setAttribute("personal", estadistica.getPersonal());
                 request.setAttribute("consultas", estadistica.getConsultas());
                 request.setAttribute("tratamientos", estadistica.getTratamientos());
