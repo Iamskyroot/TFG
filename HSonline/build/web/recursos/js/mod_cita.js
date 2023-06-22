@@ -168,7 +168,21 @@ document.addEventListener('DOMContentLoaded', function () {
         headerToolbar: {
             left: "prev,next today",
             center: "title",
-            right: "timeGridDay,timeGridWeek,dayGridMonth"
+            right: "timeGridDay,timeGridWeek,dayGridMonth,listWeek"
+        },
+        buttonText: {
+            today: "Hoy",
+            day: "Día",
+            week: "Semana",
+            month: "Mes",
+            list: "Lista"
+        },
+        allDaySlot: false,
+        titleFormat: {
+            month: "short",
+            year: "numeric",
+            day: "numeric",
+            weekDay: "short"
         },
         locale: "es",
         selectable: true,
@@ -246,14 +260,28 @@ $(document).ready(function () {
                 sortable: false
             },
             {
-                data: "fecha_solicitud",
+                data: "fecha_solicitud"
             },
             {
                 data: "fecha_inicio",
+                render: function (data) {
+                    if (data == "") {
+                        return "<span class='btn-warning' style='padding:2px 10px'>No asignado</span>";
+                    } else {
+                        return data;
+                    }
+                }
             },
             {
                 data: "fecha_fin",
-                sortable: false
+                sortable: false,
+                render: function (data) {
+                    if (data == "") {
+                        return "<span class='btn-warning' style='padding:2px 10px'>No asignado</span>";
+                    } else {
+                        return data;
+                    }
+                }
             },
             {
                 data: "medico",

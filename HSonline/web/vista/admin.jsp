@@ -84,8 +84,8 @@
                             if (usu != null) {
                                 if (usu.getEspecialidad().equalsIgnoreCase("admin") && (!usu.getEspecialidad().equalsIgnoreCase("enfermeria") || usu.getEspecialidad().equalsIgnoreCase("recepcionista"))) {
                         %>
-                    <li><a href="#" onclick="toggleActive(this)" id="horario" title="Horarios">
-                            <span class="icon"><i class="fas fa-user-md"></i></span>
+                    <li><a href="Horario?menu=Horario&accion=Listar&page=1" id="horario" title="Horarios">
+                            <span class="icon"><i class="fas fa-calendar-week"></i></span>
                             <span class="link-text">Horarios</span>
                         </a></li>
                         <%}
@@ -245,30 +245,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%
-//                                        Conexion con = new Conexion();
-//                                            Statement st = null;
-//                                            ResultSet rs = null;
-//                                            String sql = "SELECT * FROM sanitario s, horario h WHERE s.idMedico=h.sanitario_id";
-//                                            try {
-//                                                st = con.conectar().createStatement();
-//                                                rs = st.executeQuery(sql);
-//                                                while (rs.next()) {
-//                                                    out.print("<tr>");
-//                                                    for (int i = 0; i < 7; i++) {
-//                                                            if (rs.getString("dia_semana").equals("lunes")) {
-//                                                                out.print("<td>" + rs.getString("nombre") + "</td>");
-//                                                            }
-//                                                            if (rs.getString("dia_semana").equals("martes")) {
-//                                                                out.print("<td>" + rs.getString("nombre") + "</td>");
-//                                                            }
-//                                                    }
-//                                                    out.print("</tr>");
-//                                                }
-//                                            } catch (Exception e) {
-//                                                System.out.println(e.getMessage());
-//                                            }
-                                    %>
                                     <tr>
                                         <td>
                                             <c:forEach items="${lunes}" var="l">

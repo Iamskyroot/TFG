@@ -23,11 +23,11 @@
     <body>
         <%
             Sanitario usu = (Sanitario) session.getAttribute("usuario");
-            String nombre = request.getParameter("nombre");
+            String datos = request.getParameter("nombre");
             String userType = request.getParameter("type");
             Conexion con = new Conexion();
 
-            String sql = "SELECT * FROM paciente WHERE nombre LIKE '%" + nombre + "%'";
+            String sql = "SELECT * FROM paciente WHERE nombre LIKE '%" + datos + "%' OR idPaciente LIKE '%"+datos+"%'";
 
             Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -35,6 +35,7 @@
 
         %>
     <tr>
+        <td><%= rs.getString("idPaciente")%></td>
         <td><%= rs.getString("nombre")%></td>
         <td><%= rs.getInt("edad")%></td>
         <td><%= rs.getString("sexo")%></td>

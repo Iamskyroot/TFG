@@ -19,11 +19,16 @@ public class Consulta extends Conexion{
     private double altura;
     private double peso;
     private double temperatura;
+    private double tension;
+    private double pulso;
     private String sintomas;
+    private String estado;
+    private String servicio;
     private String notas;
     private String pruebas;
     private String dianosticos;
     private String fecha_consulta;
+    private String fecha_dianostico;
     private int medico_id;
 
     public String getMotivo() {
@@ -50,6 +55,15 @@ public class Consulta extends Conexion{
     public void setNotas(String notas) {
         this.notas = notas;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
 
     public int getCodigo() {
         return codigo;
@@ -125,26 +139,63 @@ public class Consulta extends Conexion{
     public void setFecha_consulta(String fecha_consulta) {
         this.fecha_consulta = fecha_consulta;
     }
+
+    public double getTension() {
+        return tension;
+    }
+
+    public void setTension(double tension) {
+        this.tension = tension;
+    }
+
+    public double getPulso() {
+        return pulso;
+    }
+
+    public void setPulso(double pulso) {
+        this.pulso = pulso;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getFecha_dianostico() {
+        return fecha_dianostico;
+    }
+
+    public void setFecha_dianostico(String fecha_dianostico) {
+        this.fecha_dianostico = fecha_dianostico;
+    }
     
     
     
     public Consulta() {
     }
 
-    public Consulta(int codigo, int paciente_id, String motivo, double altura, double peso, double temperatura, String sintomas, String notas, String pruebas, String dianosticos, String fecha_consulta, int medico_id) {
+    public Consulta(int codigo, int paciente_id, String motivo, double altura, double peso, double temperatura, double tension, double pulso, String sintomas, String servicio, String notas, String pruebas, String dianosticos, String fecha_consulta, int medico_id) {
         this.codigo = codigo;
         this.paciente_id = paciente_id;
         this.motivo = motivo;
         this.altura = altura;
         this.peso = peso;
         this.temperatura = temperatura;
+        this.tension = tension;
+        this.pulso = pulso;
         this.sintomas = sintomas;
+        this.servicio = servicio;
         this.notas = notas;
         this.pruebas = pruebas;
         this.dianosticos = dianosticos;
         this.fecha_consulta = fecha_consulta;
         this.medico_id = medico_id;
     }
+
+    
 
 
     public Consulta(int paciente_id, String motivo, double altura, double peso, double temperatura, String sintomas, String notas, String pruebas, String dianosticos, String fecha_consulta, int medico_id) {

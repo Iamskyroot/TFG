@@ -25,9 +25,8 @@
             String datos = request.getParameter("datos");
             Conexion con = new Conexion();
 
+            String sql = "SELECT * FROM citas WHERE nombre LIKE '%" + datos + "%'";
 
-            String sql = "SELECT * FROM citas WHERE nombre LIKE '%"+datos+"%'";
-            
             Statement st = con.conectar().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -38,8 +37,24 @@
         <td><%= rs.getString("motivo")%></td>
         <td><%= rs.getString("servicio")%></td>
         <td><%= rs.getString("fecha_solicitud")%></td>
-        <td><%= rs.getString("fecha_inicio")%></td>
-        <td><%= rs.getString("fecha_fin")%></td>
+        <td>
+            <%
+                if (rs.getString("fecha_inicio").isEmpty()) {
+                    out.print("<span class='btn-warning' style='padding:2px 10px'>No asignado</span>");
+                } else {
+                    out.print(rs.getString("fecha_inicio"));
+                }
+            %>
+        </td>
+        <td>
+            <%
+                if (rs.getString("fecha_fin")==null) {
+                    out.print("<span class='btn-warning' style='padding:2px 10px'>No asignado</span>");
+                } else {
+                    out.print(rs.getString("fecha_fin"));
+                }
+            %>
+        </td>
         <td><%= rs.getString("medico")%></td>
         <td class="btn-group-sm">
             <a href="CtrlCitas?menu=Citas&accion=editar&id=<%= rs.getString("idCita")%>" target="blank" class="btn btn-success" title="Editar solicitud"><i class="far fa-edit"></i></a>

@@ -87,8 +87,8 @@
                             if (usu != null) {
                                 if (usu.getEspecialidad().equalsIgnoreCase("admin") && (!usu.getEspecialidad().equalsIgnoreCase("enfermeria") || usu.getEspecialidad().equalsIgnoreCase("recepcionista"))) {
                         %>
-                    <li><a href="#" onclick="toggleActive(this)" id="horario" title="Horarios">
-                            <span class="icon"><i class="fas fa-user-md"></i></span>
+                    <li><a href="Horario?menu=Horario&accion=Listar&page=1" id="horario" title="Horarios">
+                            <span class="icon"><i class="fas fa-calendar-week"></i></span>
                             <span class="link-text">Horarios</span>
                         </a></li>
                         <%}
@@ -141,15 +141,7 @@
                     <div class="container-data">
                         ${estado}
                         <div class="top_container">
-<!--                            <div class="filter_div">
-                                                    Filtro: <select class="filtro">
-                                                        <option>Hoy</option>
-                                                        <option>No dianosticado</option>
-                                                        <option>Dianosticado</option>
-                                                    </select>
-                                <a class="filter_item active" href="#"><i class="fas fa-list-ol"></i> Todos</a>
-                                <a class="filter_item" href="#"><i class="fas fa-sort-alpha-up"></i> Orden alfabetico</a>
-                            </div>-->
+
                             <div class="search_div">
                                 <input type="search" name="txtBuscar" id="txt" onkeyup="buscarPersonal(this.value)" class="inp_search" placeholder="Buscar muestra" autofocus>
                                 <!--<input type="submit" name="" class="btn_search" value="Buscar">-->
@@ -218,19 +210,19 @@
                     </div>
 
                     <!-- Add and popup form -->
-                    <button class="open-button" onclick="openForm()" title="Añadir un nuevo personal"><i class="fas fa-plus"></i></button>
+                    <div class="open-button" onclick="openForm()" title="Añadir un nuevo personal"><i class="fas fa-plus"></i></div>
 
                     <div class="modal" id="modal">
 
                         <div class="form-popup animate">
-                            <form action="sanitario?accion=registro" method="post" class="form-container" autocomplete="off">
+                            <form action="sanitario?accion=registro" method="post" onsubmit="return validateFormRegistro()" class="form-container" autocomplete="off">
                                 <h2>Registro de personal sanitario</h2>
                                 <fieldset>
                                     <legend>Datos personales para el personal sanitario</legend>
                                     <div class="f_row">
                                         <div class="f_column">
                                             <label>Nombre</label>
-                                            <input type="text" name="nombre" class="f_txt" placeholder="Nombre completo">
+                                            <input type="text" name="nombre" class="f_txt req" placeholder="Nombre completo">
                                         </div>
                                         <div class="f_column">
                                             <label>Sexo</label>
@@ -245,7 +237,8 @@
                                     <div class="f_row">
                                         <div class="f_column">
                                             <label>Nacionalidad</label>
-                                            <select class="f_txt" name="nacion">
+                                            <select class="f_txt req" name="nacion">
+                                                <option value="">--Seleccionar--</option>
                                                 <option>Ecuatoguineano</option>
                                                 <option>Nacionalidad 2</option>
                                                 <option>Nacionalidad 3</option>
@@ -253,7 +246,7 @@
                                         </div>
                                         <div class="f_column">
                                             <label>Dip/passaporte</label>
-                                            <input type="text" name="doc" class="f_txt" placeholder="Nº DIP o pasaporte">
+                                            <input type="text" name="doc" class="f_txt req" placeholder="Nº DIP o pasaporte">
                                         </div>
                                     </div>
 
@@ -264,11 +257,11 @@
                                     <div class="f_row">
                                         <div class="f_column">
                                             <label>Direccion</label>
-                                            <input type="text" name="dir" class="f_txt" placeholder="Nombre barrio y zona">
+                                            <input type="text" name="dir" class="f_txt req" placeholder="Nombre barrio y zona">
                                         </div>
                                         <div class="f_column">
                                             <label>Telefono</label>
-                                            <input type="text" name="tel" class="f_txt" placeholder="telefono">
+                                            <input type="text" name="tel" class="f_txt req" placeholder="telefono">
                                         </div>
                                         <div class="f_column">
                                             <label>Email</label>
@@ -282,8 +275,8 @@
                                     <div class="f_row">
                                         <div class="f_column">
                                             <label>Seleccione la especialidad</label>
-                                            <select class="f_txt esp" name="espe">
-                                                <option></option>
+                                            <select class="f_txt esp req" name="espe">
+                                                <option value="">--Seleccionar--</option>
                                                 <option>Medicina general</option>
                                                 <option>Laboratorio</option>
                                                 <option>Enfermeria</option>
@@ -304,11 +297,11 @@
                                     <div class="f_row">
                                         <div class="f_column">
                                             <label>Usuario</label>
-                                            <input type="text" name="user" id="user" class="f_txt">
+                                            <input type="text" name="user" id="user" class="f_txt req">
                                         </div>
                                         <div class="f_column">
                                             <label>Contraseña</label>
-                                            <input type="password" name="passw" id="passw" class="f_txt">
+                                            <input type="password" name="passw" id="passw" class="f_txt req">
                                         </div>
                                         <div class="f_column">
                                             <label>Repita la contraseña</label>

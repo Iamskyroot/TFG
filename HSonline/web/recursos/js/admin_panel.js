@@ -2,7 +2,11 @@ $(document).ready(function () {
     $("#navBtn").click(function () {
         $(".main").toggleClass('animate');
     });
-    
+    //auto dismiss alert
+    $(".alert").hide();
+    $(".alert").fadeTo(3000,500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+    });
 });
 
 

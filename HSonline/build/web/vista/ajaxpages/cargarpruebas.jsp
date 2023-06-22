@@ -26,7 +26,7 @@
                 String consulta = request.getParameter("idCo");
                 Conexion con = new Conexion();
 
-                String sql = "SELECT * FROM pruebas_paciente WHERE consulta_id="+consulta;
+                String sql = "SELECT * FROM pruebas_paciente WHERE consulta_id=" + consulta;
 
                 Statement st = con.conectar().createStatement();
                 ResultSet rs = st.executeQuery(sql);
@@ -34,11 +34,13 @@
 
             %>
 
-            <li><label><input type="checkbox" name="p" value="<%= rs.getString("enfermedad")%>"> <%= rs.getString("enfermedad")%>  </label></li>
+            <li><label><input type="checkbox" name="p" value="<%= rs.getString("prueba")%>"> <%= rs.getString("prueba")%>  </label></li>
 
 
             <%        }
                 con.conectar().close();
+                st.close();
+                rs.close();
             %>
         </ul>
 

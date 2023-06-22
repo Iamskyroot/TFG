@@ -28,10 +28,10 @@
 
             String sql;
             if (datos.equals("todo")) {
-                sql = "SELECT * FROM consulta";
+                sql = "SELECT * FROM consulta WHERE estado IS null";
             } else {
 
-                sql = "SELECT * FROM consulta WHERE fecha_consulta LIKE '%" + datos + "%'";
+                sql = "SELECT * FROM consulta WHERE (fecha_consulta LIKE '%" + datos + "%') AND (estado IS null)";
 //                System.out.println(datos);
             }
 
@@ -44,18 +44,26 @@
         <td><%= rs.getString("idConsulta")%></td>
         <td><%= rs.getInt("paciente_id")%></td>
         <td><%= rs.getString("pruebas")%></td>
-        <td><%= rs.getString("dianostico")%></td>
+        <td><%
+                if(rs.getString("dianostico").isEmpty()){
+                    out.print("<span class='btn-warning' style='padding:2px 10px'>No dianosticado</span>");
+                }else{
+                    out.print("<span class='btn-success' style='padding:2px 10px'>Dianosticado</span>");
+                }
+            %></td>
         <td><%= rs.getString("fecha_consulta")%></td>
         <td class="btn-group-sm">
             <a class="btn btn-success" href="#" onclick="editConsulta(<%= rs.getInt("paciente_id")%>,<%= rs.getString("idConsulta")%>)" title="Editar"><i class="far fa-edit"></i></a>
             <a class="btn btn-warning" href="archivar?menu=Consultas&accion=Archivar&codConsulta=<%= rs.getString("idConsulta")%>&codPaciente=<%= rs.getInt("paciente_id")%>&page=${pagActual}" title="Archivar"><i style="color:white" class="fas fa-download"></i></a>
-            <a class="btn btn-info" href="Controlador?menu=Detalles&accion=Mostrar&codPaciente=<%= rs.getInt("paciente_id")%>&codConsulta=<%= rs.getString("idConsulta")%>" title="Mostrar detalles"><i class="fas fa-eye"></i></a>
+            <a class="btn btn-info" href="Controlador?menu=Detalles&accion=Mostrar&codPaciente=<%= rs.getInt("paciente_id")%>&codConsulta=<%= rs.getString("idConsulta")%>&mId=<%= rs.getString("medico_id")%>" title="Mostrar detalles"><i class="fas fa-eye"></i></a>
         </td>
 
     </tr>
     <%
         }
         con.conectar().close();
+        st.close();
+        rs.close();
     %>
 
 

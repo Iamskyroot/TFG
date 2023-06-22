@@ -81,8 +81,8 @@
                             if (usu != null) {
                             if (usu.getEspecialidad().equalsIgnoreCase("admin") && (!usu.getEspecialidad().equalsIgnoreCase("enfermeria") || usu.getEspecialidad().equalsIgnoreCase("recepcionista"))) {
                         %>
-                    <li><a href="#" onclick="toggleActive(this)" id="horario" title="Horarios">
-                            <span class="icon"><i class="fas fa-user-md"></i></span>
+                    <li><a href="Horario?menu=Horario&accion=Listar&page=1" id="horario" title="Horarios">
+                            <span class="icon"><i class="fas fa-calendar-week"></i></span>
                             <span class="link-text">Horarios</span>
                         </a></li>
                         <%}}%>

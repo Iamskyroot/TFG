@@ -34,19 +34,6 @@ public class RegistrarConsulta extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegistrarConsulta</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegistrarConsulta at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     @Override
@@ -67,84 +54,64 @@ public class RegistrarConsulta extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        String motivo = request.getParameter("motivo");
+        double altura = Double.parseDouble(request.getParameter("altura"));
+        double peso = Double.parseDouble(request.getParameter("peso"));
+        double temp = Double.parseDouble(request.getParameter("temperatura"));
+        double tension = 0;
+        double pulso = 0;
+        if (request.getParameter("tension") != "") {
+            tension = Double.parseDouble(request.getParameter("tension"));
+        } else if (request.getParameter("pulso") != "") {
+            pulso = Double.parseDouble(request.getParameter("pulso"));
+        }
+        String prioridad = request.getParameter("estado");
+        String sintomas = request.getParameter("sintomas");
+        String s[] = request.getParameterValues("s");
+        String servicio = request.getParameter("servicio");
+        String pacienteId = request.getParameter("id");
+        String datosSintomas = "";
+        for (String datos : s) {
+            datosSintomas += datos + ", ";
+        }
+        datosSintomas += sintomas;
 
         if (request.getParameter("accion") != null) {
 
-            sanitario = (Sanitario) session.getAttribute("usuario");
+            if (motivo.equals("Malestar") && (request.getParameterValues("estado") == null) || datosSintomas.equals("")) {
 
-            String motivo = request.getParameter("motivo");
-            double altura = Double.parseDouble(request.getParameter("altura"));
-            double peso = Double.parseDouble(request.getParameter("peso"));
-            double temp = Double.parseDouble(request.getParameter("temperatura"));
-            String sintomas = request.getParameter("sintomas");
-
-            String notas = request.getParameter("notas");
-
-            String dianosticos = request.getParameter("dianostico");
-//            String tratamiento = request.getParameter("tratamiento");
-            String pacienteId = request.getParameter("id");
-
-            String datosSintomas = "";
-            String dPruebas = "";
-
-            if (motivo.equals("Malestar") && (request.getParameterValues("s") == null && sintomas.isEmpty())) {
-
-                error = "Seleccione los sintomas o rellene el campo otros sintomas";
-//                alert = "<div id='alert_error' class='alert warning animate'>"
-//                            + "<span onclick='closeAlert()' class='closealert'>&times;</span>"
-//                            + "<p>" + error + "</p>"
-//                            + "</div>";
-//                request.setAttribute("alert", alert);
-//                request.getRequestDispatcher("Controlador?menu=Pacientes&accion=nc").forward(request, response);
-                response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=" + error);
-
-            } else if (request.getParameterValues("p") == null) {
-
-                error = "Seleccione al menos una prueba";
-//                alert = "<div id='alert_error' class='alert warning animate'>"
-//                            + "<span onclick='closeAlert()' class='closealert'>&times;</span>"
-//                            + "<p>" + error + "</p>"
-//                            + "</div>";
-//                request.setAttribute("alert", alert);
-//                request.getRequestDispatcher("Controlador?menu=Pacientes&accion=nc").forward(request, response);
-                response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=" + error);
+                error = "Error al guardar datos. No se completó el formulario.";
+                alert = "<div class='alert alert-warning animate'>"
+                        + "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"
+                        + "<p><strong>Info!</strong> " + error + "</p>"
+                        + "</div>";
+                request.setAttribute("alert", alert);
+                request.getRequestDispatcher("Controlador?menu=Pacientes&accion=Listar&page=1&").forward(request, response);
 
             } else {
-                String s[] = request.getParameterValues("s");
-                String pruebas[] = request.getParameterValues("p");
-                for (String item : s) {
-                    datosSintomas += item + ", ";
-                }
-                datosSintomas += sintomas;
 
-                for (String prueba : pruebas) {
-                    dPruebas += prueba + ", ";
-                }
+                Consulta c = new Consulta();
+                c.setMotivo(motivo);
+                c.setAltura(altura);
+                c.setPeso(peso);
+                c.setTemperatura(temp);
+                c.setTension(tension);
+                c.setPulso(pulso);
+                c.setEstado(prioridad);
+                c.setSintomas(datosSintomas);
+                c.setServicio(servicio);
+                c.setFecha_consulta(fecha());
+                if (cdao.registroTriaje(c, pacienteId)) {
 
-                Consulta c = new Consulta(Integer.parseInt(pacienteId), motivo, altura, peso, temp, datosSintomas, notas, dPruebas, dianosticos, fecha(), sanitario.getCodigo());
-                if (cdao.guardarDatosConsulta(c, pacienteId)) {
-                    cdao.obtenerUltimaConsulta();
-                    for (String dato : pruebas) {
-                        cdao.registrarPruebas(cdao.getCodigo_consulta(), dato, Integer.parseInt(pacienteId));
-                    }
-//                    estado = "Datos de consulta guardados con exito.";
-//                    alert = "<div id='alert_error' class='alert success animate'>"
-//                            + "<span onclick='closeAlert()' class='closealert'>&times;</span>"
-//                            + "<p>" + estado + "</p>"
-//                            + "</div>";
-//                    request.setAttribute("alert", alert);
-//                    request.getRequestDispatcher("Controlador?menu=Pacientes&accion=nc").forward(request, response);
                     response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=OK");
                 } else {
-                    error = "Error al guardar informacion de consulta";
-//                    alert = "<div id='alert_error' class='alert warning animate'>"
-//                            + "<span onclick='closeAlert()' class='closealert'>&times;</span>"
-//                            + "<p>" + error + "</p>"
-//                            + "</div>";
-//                    request.setAttribute("alert", alert);
-//                    request.getRequestDispatcher("Controlador?menu=Pacientes&accion=nc").forward(request, response);
-                    response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=" + error);
+                    error = "Error al guardar los datos";
+                    alert = "<div class='alert alert-warning animate'>"
+                            + "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"
+                            + "<p><strong>Info!</strong> " + error + "</p>"
+                            + "</div>";
+                    request.setAttribute("alert", alert);
+                    request.getRequestDispatcher("Controlador?menu=Pacientes&accion=Listar&page=1").forward(request, response);
                 }
 
             }

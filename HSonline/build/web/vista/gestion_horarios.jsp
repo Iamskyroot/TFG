@@ -4,148 +4,318 @@
     Author     : Skyroot
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modelo.Sanitario"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Orarios y programacion medica</title>
-        <link rel="stylesheet" type="text/css" href="recursos/css/header.css">
-        <link rel="stylesheet" type="text/css" href="recursos/css/doctores_2.css">
-        <link href="assets/css/all.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestion de horarios</title>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/recursos/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/recursos/css/admin_panel.css"/>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/recursos/css/estilos_resultados.css"/>
+        <link href="<%=request.getContextPath()%>/recursos/css/historial.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/all.css"/>
     </head>
+
     <body>
-
-
         <%@include file="no_session.jsp"%>
-
-        <ul class="navegacion" id="navegacion">
-            <div class="n_item logo">
-                <a href="#" class="icon">HS</a>
-                <a href="#">online</a>
-            </div>
-
-            <li class="n_item enlaces "><a href="Controlador?menu=Principal">Principal</a></li>
-            <li class="n_item enlaces"><a href="CtrlDoctores?menu=Doctores">Doctores</a></li>
-            <li class="n_item enlaces active"><a href="CtrlDoctores?menu=Horarios">Horarios</a></li>
-            <div class="n_item dropdown">
-                <button class="dropbtn">
-                    <i class="fas fa-user-circle" style="font-size: 24px"></i>
-                    ${usuario.getNombre()}
-                    
-                </button>
-                <div class="dropdown-content">
-                    <div class="user-icon">U</div>
-                    <div class="user-item"><span>${usuario.getNombre()}</span></div>
-                    <a href="CerrarSesion?accion=logout">Cerrar sesion</a>
-                </div>
-            </div>
-            <li class="btn_menu"><a href="javascript:void(0);" onclick="menuResponsive()">
-                    <div class="open" id="open" title="Abrir menu">
-                        <div class="m"></div>
-                        <div class="m"></div>
-                        <div class="m"></div>
-                    </div>
-                    <div class="close" id="close" title="Cerrar menu">&times;</div>
-                </a></li>
-        </ul>
-
+        <% Sanitario usu = (Sanitario) session.getAttribute("usuario");%>
         <div class="main">
-            <div class="aside main-item">
-                <form action="EditarHospitalizacion" method="post">
-                    <label>Titulo del horario</label>
-                    <input type="text" name="titulo" value="" placeholder="Titulo" class="aside-input" required>
-                    <select class="aside-input">
-                        <option value="">Turno</option>
-                        <option value="1">Mañana</option>
-                        <option value="2">Tarde</option>
-                        <option value="3">Noche</option>
-                    </select>
-                    <button type="button" class="acordeon">Lunes</button>
-                    <div  class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
-                    <button type="button" class="acordeon">Martes</button>
-                    <div class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
-                    <button type="button" class="acordeon">Miercoles</button>
-                    <div class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
-                    <button type="button" class="acordeon">Jueves</button>
-                    <div class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
-                    <button type="button" class="acordeon">Viernes</button>
-                    <div class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
-                    <button type="button" class="acordeon">Sabado</button>
-                    <div class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
-                    <button type="button" class="acordeon">Domingo</button>
-                    <div class="panel"><textarea class="aside-input" placeholder="Escriba los nombres aqui"></textarea></div>
+            <div class="navbar-side">
+                <h6>
+                    <!--<span class="icon"><i class="fas fa-hospital"></i></span>-->
+                    <span class="link-text">HS online</span>
+                </h6>
+                <ul>
+                    <li><a href="Controlador?menu=Principal" id="home" title="Principal">
+                            <span class="icon"><i class="fas fa-home"></i></span>
+                            <span class="link-text">Principal</span>
+                        </a></li>
+                    <li>
+                        <a href="#" onclick="toggleActive(this)" id="citas" class="myBtn" data-toggle="collapse" data-target="#my-sub" title="Citas" aria-expanded="false">
+                            <span class="icon"><i class="fas fa-calendar-plus"></i></span>
+                            <span class="link-text">Citas</span>
+                            <span class="ml-auto myCaret"></span>
+                        </a>
+                        <div id="my-sub" class="collapse bg-secondary">
+                            <a href="CtrlCitas?menu=Citas&accion=listar&page=1" title="Solicitudes">
+                                <span class="icon"><i class="fas fa-users"></i></span>
+                                <span class="link-text">Solicitudes</span>
+                            </a>
+                            <a href="CtrlCitas?menu=Agenda" title="Agenda">
+                                <span class="icon"><i class="fas fa-calendar-week"></i></span>
+                                <span class="link-text">Agenda</span>
+                            </a>
+                        </div>
+                    </li>
+                    <%
+                        if (usu != null) {
+                            if (usu.getEspecialidad().equalsIgnoreCase("admin") && (!usu.getEspecialidad().equalsIgnoreCase("enfermeria") || usu.getEspecialidad().equalsIgnoreCase("recepcionista"))) {
+                    %>
+                    <li><a href="CtrlDoctores?menu=Doctores&accion=Listar&page=1" title="Personal sanitario">
+                            <span class="icon"><i class="fas fa-user-md"></i></span>
+                            <span class="link-text">Personal sanitario</span>
+                        </a></li>
+                        <%}
+                            }%>
+                    <li><a href="Controlador?menu=Pacientes&accion=Listar&page=1" title="Pacientes">
+                            <span class="icon"><i class="fas fa-users"></i></span>
+                            <span class="link-text">Pacientes</span>
+                        </a></li>
+                        <%
+                            if (usu != null) {
+                                if (!usu.getEspecialidad().equalsIgnoreCase("recepcionista") && !usu.getEspecialidad().equalsIgnoreCase("recepcionista")) {
+                        %>
+                    <li><a href="Controlador?menu=Consultas&accion=Listar&page=1" title="Consultas">
+                            <span class="icon"><i class="fas fa-stethoscope"></i></span>
+                            <span class="link-text">Consultas</span>
+                        </a></li>
 
-                    <div class="aside-btn">
-                        <input type="submit" name="accion" value="Guardar">
-                    </div>                   
-                </form>
+                    <li><a href="CtrlTratamiento?menu=Tratamiento&accion=Listar&page=1" title="Tratamientos">
+                            <span class="icon"><i class="fas fa-pills"></i></span>
+                            <span class="link-text">Tratamientos</span>
+                        </a></li>
+                        <%}
+                            }%>
+                    <li><a href="CtrlHospitalizacion?menu=Hospitalizacion&accion=Listar&page=1" title="Hospitalizaciones">
+                            <span class="icon"><i class="fas fa-procedures"></i></span>
+                            <span class="link-text">Hospitalizaciones</span>
+                        </a></li>
+                        <%
+                            if (usu != null) {
+                                if (usu.getEspecialidad().equalsIgnoreCase("admin") && (!usu.getEspecialidad().equalsIgnoreCase("enfermeria") || usu.getEspecialidad().equalsIgnoreCase("recepcionista"))) {
+                        %>
+                    <li><a href="Horario?menu=Horario&accion=Listar&page=1" class="link-active" id="horario" title="Horarios">
+                            <span class="icon"><i class="fas fa-calendar-week"></i></span>
+                            <span class="link-text">Horarios</span>
+                        </a></li>
+                        <%}
+                            }%>
+                        <%
+                            if (usu != null) {
+                                if (!usu.getEspecialidad().equalsIgnoreCase("recepcionista") && !usu.getEspecialidad().equalsIgnoreCase("recepcionista")) {
+                        %>
+                    <li><a href="CtrlHistorial?menu=Historial&accion=Listar&page=1"  title="Historias clinicas">
+                            <span class="icon"><i class="fas fa-file-alt"></i></span>
+                            <span class="link-text">Historias clinicas</span>
+                        </a></li>
+                        <%}
+                            }%> 
+                    <li><a href="Controlador?menu=Perfil&accion=perfil" title="Mi perfil">
+                            <span class="icon"><i class="fas fa-user-circle"></i></span>
+                            <span class="link-text">Mi perfil</span>
+                        </a></li>
+
+                </ul>
             </div>
 
-            <div class="main-container main-item">
+            <div class="content">
+                <nav class="navbar navbar-dark bg-dark py-1">
 
-                <div class="horario">
-                    
-                    <h3>Titulo del horario</h3>
-                    <p id="fecha">21/01/2013</p>
-                    <table>
-                        <thead>
-                            <tr>
-                                <td>Turno</td>
-                                <td>Lunes</td>
-                                <td>Martes</td>
-                                <td>Miercoles</td>
-                                <td>Jueves</td>
-                                <td>Viernes</td>
-                                <td>Sabado</td>
-                                <td>Domingo</td>
-                            </tr>
-                        </thead>
+                    <a href="#" id="navBtn">
+                        <span id="changeIcon" class="fa fa-bars text-light"></span>
+                    </a>
 
-                        <tbody>
-                            <tr>
-                                <td>Mañana</td>
-                                <td>Nombre 2</td>
-                                <td>Nombre 3</td>
-                                <td>Nombre 4</td>
-                                <td>Nombre 5</td>
-                                <td>Nombre 6</td>
-                                <td>Nombre 7</td>
-                                <td>Nombre 8</td>
-                            </tr>
-                        </tbody>
+                    <div class="d-flex">
 
-                    </table>
+                        <a class="nav-link text-light px-2"><i class="fas fa-user-circle"></i> ${usuario.getNombre()}</a> 
+                        <a class="nav-link text-light px-2" href="CerrarSesion?accion=logout" title="Cerrar sesion"> <i class="fas fa-power-off"></i></a>
+                    </div>
+                </nav>
+
+
+                <div class="container-fluid">
+                    ${alert}
+                    <div class="container-data">
+                        ${estado}
+                        <div class="top_container">
+<!--                            <div class="filter_div">
+
+                                <a class="filter_item active" id="todo" href="#" onclick="filtrarHc(this)"><i class="fas fa-list-ol"></i> Todos</a>
+                                <a class="filter_item" id="dia" href="#" onclick="filtrarHc(this)"><i class="fas fa-calendar-day"></i> Hoy</a>
+                                <a class="filter_item" id="semana" href="#" onclick="filtrarHc(this)"><i class="fas fa-calendar-week"></i> Esta semana</a>
+
+
+                            </div>-->
+                            <div class="search_div">
+
+                                <input type="search" name="txtBuscar" id="txt" class="inp_search" placeholder="Buscar paciente"
+                                       onkeyup="buscar(this.value)" autofocus>
+                                <button type="button" class="btn_search" onclick="buscar(document.getElementById('txt').value)"><i class="fas fa-search"></i></button>
+                        
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>ID personal</td>
+                                        <td>Dia</td>
+                                        <td>Hora entrada</td>
+                                        <td>Hora salida</td>
+                                        <td>Acciones</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="res">
+                                    <c:forEach items="${horarios}" var="ho">
+                                        <tr>
+                                            <td>${ho.getCodigo()}</td>
+                                            <td>${ho.getSanitatio_id()}</td>
+                                            <td>${ho.getDia()}</td>
+                                            <td>${ho.getInicio()}</td>
+                                            <td>${ho.getFin()}</td>
+                                            <td class="btn-group-sm">
+                                                <a href="#" onclick="editarHorario(${ho.getCodigo()})" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                                <a href="#" onclick="eliminarHorario(${ho.getCodigo()})" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                            </td>
+                                            <!--<td><button><a href="#"><i class="fas fa-edit"></i></a></button></td>-->
+                                        </tr>
+                                    </c:forEach>
+
+                                <tbody>
+                            </table>
+
+                            <div class="paginacion">
+                                <!--display previous link except for the first page-->
+                                <c:if test="${pagActual != 1}">
+                                    <a href="Horario?menu=Horario&accion=Listar&page=${pagActual - 1}"><i class="fas fa-angle-double-left"></i></a>
+                                    </c:if>
+                                <!--displaying page numbers-->
+                                <c:forEach begin="1" end="${noPag}" var="i">
+                                    <c:choose>
+                                        <c:when test="${pagActual eq i}">
+                                            <a href="Horario?menu=Horario&accion=Listar&page=${i}" class="active">${i}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="Horario?menu=Horario&accion=Listar&page=${i}">${i}</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                                <!--display previous link except for the first page-->
+                                <c:if test="${pagActual lt noPag}">
+                                    <a href="Horario?menu=Horario&accion=Listar&page=${pagActual + 1}"><i class="fas fa-angle-double-right"></i></a>
+                                </c:if>
+
+                            </div>
+                            <label style="float: right;font-weight: bold;margin-right: 10px">Total: ${noFilas}</label>
+
+                        </div>
+
+
+                    </div>
+                     <!--btn to add new event-->
+                     <div class="open-button" onclick="document.getElementById('modalHorario2').style.display='block'" title="A�adir un nuevo horario"><i class="fas fa-plus"></i></div>
+                    <div class="modal" id="modalHorario">
+
+                        <div class="form-popup animate">
+                            <form action="editarhorario?accion=edit" method="post" class="form-container">
+                                <h2>Asignar horario</h2>
+
+                                <div class="f_row">
+                                    <div class="f_column">
+                                        <label>ID</label>
+                                        <input type="number" name="id" id="idSan" class="f_txt" readonly required>
+                                    </div>
+                                    <div class="f_column">
+                                        <label>Dia de la semana</label>
+                                        <select class="f_txt" name="dia" required>
+                                            <option value=""></option>
+                                            <option value="lunes">Lunes</option>
+                                            <option value="martes">Martes</option>
+                                            <option value="miercoles">Miercoles</option>
+                                            <option value="jueves">Jueves</option>
+                                            <option value="viernes">Viernes</option>
+                                            <option value="sabado">Sabado</option>
+                                            <option value="domingo">Domingo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="f_row">
+                                    <div class="f_column">
+                                        <label>Hora de entrada</label>
+                                        <input type="time" class="f_txt" name="inicio" required>
+                                    </div>
+                                    <div class="f_column">
+                                        <label>Hora de salida</label>
+                                        <input type="time" class="f_txt" name="fin" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="f_row">
+                                    <button type="submit" name="accion" class="btn_guardar">Guardar</button>
+                                </div>
+
+                                <span class="cancel" onclick="document.getElementById('modalHorario').style.display='none'" title="Cerrar el formulario">&times;</span>
+                            </form>
+                        </div>
+
+                    </div>
+                     
+                    <div class="modal" id="modalHorario2">
+
+                        <div class="form-popup animate">
+                            <form action="editarhorario?accion=new" method="post" class="form-container">
+                                <h2>Asignar horario</h2>
+
+                                <div class="f_row">
+                                    <div class="f_column">
+                                        <label>ID</label>
+                                        <input type="number" name="id" id="idSan" class="f_txt" required>
+                                    </div>
+                                    <div class="f_column">
+                                        <label>Dia de la semana</label>
+                                        <select class="f_txt" name="dia" required>
+                                            <option value=""></option>
+                                            <option value="lunes">Lunes</option>
+                                            <option value="martes">Martes</option>
+                                            <option value="miercoles">Miercoles</option>
+                                            <option value="jueves">Jueves</option>
+                                            <option value="viernes">Viernes</option>
+                                            <option value="sabado">Sabado</option>
+                                            <option value="domingo">Domingo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="f_row">
+                                    <div class="f_column">
+                                        <label>Hora de entrada</label>
+                                        <input type="time" class="f_txt" name="inicio" required>
+                                    </div>
+                                    <div class="f_column">
+                                        <label>Hora de salida</label>
+                                        <input type="time" class="f_txt" name="fin" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="f_row">
+                                    <button type="submit" name="accion" class="btn_guardar">Guardar</button>
+                                </div>
+
+                                <span class="cancel" onclick="document.getElementById('modalHorario2').style.display='none'" title="Cerrar el formulario">&times;</span>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
 
+
             </div>
+
         </div>
 
-        <script type="text/javascript">
-            
-            /*acordeon horario*/
-            var acc = document.getElementsByClassName("acordeon");
-            var i;
-
-            for (i = 0; i < acc.length; i++) {
-                acc[i].addEventListener("click", function () {
-                    /* Toggle between adding and removing the "active" class,
-                     to highlight the button that controls the panel */
-                    this.classList.toggle("active");
-
-                    /* Toggle between hiding and showing the active panel */
-                    var panel = this.nextElementSibling;
-                    if (panel.style.display === "block") {
-                        panel.style.display = "none";
-                    } else {
-                        panel.style.display = "block";
-                    }
-                });
-            }
-
-        </script>
-        <script src="recursos/js/header.js" type="text/javascript"></script>
+        <script src="<%= request.getContextPath()%>/recursos/js/jquery-3.6.4.min.js"></script>
+        <script src="<%= request.getContextPath()%>/recursos/js/bootstrap.min.js"></script>
+        <script src="<%= request.getContextPath()%>/recursos/js/admin_panel.js"></script>
+        <script src="<%= request.getContextPath()%>/recursos/js/mod_horario.js"></script>
+        <script src="<%= request.getContextPath()%>/recursos/js/mod_hc.js" type="text/javascript"></script>
 
     </body>
 </html>

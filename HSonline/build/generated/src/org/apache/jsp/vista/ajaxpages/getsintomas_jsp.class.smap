@@ -1,0 +1,16 @@
+SMAP
+getsintomas_jsp.java
+JSP
+*S JSP
+*F
++ 0 getsintomas.jsp
+vista/ajaxpages/getsintomas.jsp
+*L
+5,18:47
+22,3:65
+25:68,3
+26,4:71
+30:75,3
+31,11:78
+41:89
+*E

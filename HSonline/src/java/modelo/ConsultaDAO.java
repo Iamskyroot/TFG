@@ -50,11 +50,11 @@ public class ConsultaDAO extends Conexion {
     public void setPrueba_ordenada(String prueba_ordenada) {
         this.prueba_ordenada = prueba_ordenada;
     }
+    
+    //registro triaje
+    public boolean registroTriaje(Consulta c, String codPaciente) {
 
-    //guardar paciente
-    public boolean guardarDatosConsulta(Consulta c, String codPaciente) {
-
-        String sql = "INSERT INTO consulta(paciente_id,motivo,altura,peso,temperatura,sintomas,notas,pruebas,dianostico,medico_id,fecha_consulta) "
+        String sql = "INSERT INTO consulta(paciente_id,motivo,altura,peso,temperatura,tension,pulso,sintomas,prioridad,servicio,fecha_consulta) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             ps = conectar().prepareStatement(sql);
@@ -63,14 +63,36 @@ public class ConsultaDAO extends Conexion {
             ps.setObject(3, c.getAltura());
             ps.setObject(4, c.getPeso());
             ps.setObject(5, c.getTemperatura());
-            ps.setObject(6, c.getSintomas());
-            ps.setObject(7, c.getNotas());
-            ps.setObject(8, c.getPruebas());
-            ps.setObject(9, c.getDianosticos());
-            ps.setObject(10, c.getMedico_id());
+            ps.setObject(6, c.getTension());
+            ps.setObject(7, c.getPulso());
+            ps.setObject(8, c.getSintomas());
+            ps.setObject(9, c.getEstado());
+            ps.setObject(10, c.getServicio());
             ps.setObject(11, c.getFecha_consulta());
             ps.executeUpdate();
-            System.out.println("Consulta registrada. IdP="+codPaciente);
+            System.out.println("Triaje realizado con exito. IdP="+codPaciente);
+            conectar().close();
+        } catch (SQLException e) {
+            System.out.println("Error al guardar datos de triaje:\n" + e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    //guardar paciente
+    public boolean guardarDatosConsulta(Consulta c) {
+
+        String sql = "UPDATE consulta SET sintomas=?,notas=?,pruebas=?,medico_id=? WHERE idConsulta=?";
+        try {
+            ps = conectar().prepareStatement(sql);
+            ps.setObject(1, c.getSintomas());
+            ps.setObject(2, c.getNotas());
+            ps.setObject(3, c.getPruebas());
+            ps.setObject(4, c.getMedico_id());
+            ps.setObject(5, c.getCodigo());
+            ps.executeUpdate();
+            System.out.println("Consulta registrada. IdP="+c.getCodigo());
             conectar().close();
         } catch (SQLException e) {
             System.out.println("Error al guardar consulta:\n" + e.getMessage());
@@ -80,26 +102,22 @@ public class ConsultaDAO extends Conexion {
         return true;
     }
 
-    //actualizar consulta
-    public boolean actualizarConsulta(Consulta c) {
+    //actualizar dianostico en consulta
+    public boolean actualizarDianostico(Consulta c) {
 
-        String sql = "UPDATE consulta SET motivo=?,altura=?, peso=?,temperatura=?,notas=?,sintomas=?,pruebas=?,dianostico=?,fecha_consulta=?,medico_id=? WHERE idConsulta=?";
+        String sql = "UPDATE consulta SET dianostico=?, fecha_dianostico=? WHERE idConsulta=?";
         try {
             ps = conectar().prepareStatement(sql);
-            ps.setObject(1, c.getMotivo());
-            ps.setObject(2, c.getAltura());
-            ps.setObject(3, c.getPeso());
-            ps.setObject(4, c.getTemperatura());
-            ps.setObject(5, c.getNotas());
-            ps.setObject(6, c.getSintomas());
-            ps.setObject(7, c.getPruebas());
-            ps.setObject(8, c.getDianosticos());
-            ps.setObject(9, c.getFecha_consulta());
-            ps.setObject(10, c.getMedico_id());
+          
+            ps.setObject(1, c.getDianosticos());
+            ps.setObject(2, c.getFecha_dianostico());
+            ps.setObject(3, c.getCodigo());
             ps.executeUpdate();
             conectar().close();
+            System.out.println("Dianostico actualizado");
         } catch (SQLException e) {
             System.out.println("Error al actualizar consulta:\n" + e.getMessage());
+            return false;
         }
         return true;
     }
@@ -184,7 +202,10 @@ public class ConsultaDAO extends Conexion {
                         rs.getDouble("altura"),
                         rs.getDouble("peso"),
                         rs.getDouble("temperatura"),
+                        rs.getDouble("tension"),
+                        rs.getDouble("pulso"),
                         rs.getString("sintomas"),
+                        rs.getString("servicio"),
                         rs.getString("notas"),
                         rs.getString("pruebas"),
                         rs.getString("dianostico"),
@@ -226,7 +247,10 @@ public class ConsultaDAO extends Conexion {
                         rs.getDouble("altura"),
                         rs.getDouble("peso"),
                         rs.getDouble("temperatura"),
+                        rs.getDouble("tension"),
+                        rs.getDouble("pulso"),
                         rs.getString("sintomas"),
+                        rs.getString("servicio"),
                         rs.getString("notas"),
                         rs.getString("pruebas"),
                         rs.getString("dianostico"),
@@ -330,7 +354,7 @@ public class ConsultaDAO extends Conexion {
     }
 
     //actualizar consulta
-    public boolean actualizarConsulta(String dianostico, String fecha, int medico, String codigo) {
+  /*  public boolean actualizarConsulta(String dianostico, String fecha, int medico, String codigo) {
         String sql = "UPDATE consulta SET dianostico=?,fecha_dianostico=?,medico_id=? WHERE idConsulta=?";
         try {
             ps = conectar().prepareStatement(sql);
@@ -346,12 +370,12 @@ public class ConsultaDAO extends Conexion {
             System.out.println("Error al actualizar consulta:\n" + e.getMessage());
         }
         return true;
-    }
+    }*/
 
 
     public int registrarPruebas(int consultaId, String prueba, int paciente) {
 
-        String sql = "INSERT INTO pruebas_paciente(paciente_id,enfermedad,consulta_id) VALUES(?,?,?)";
+        String sql = "INSERT INTO pruebas_paciente(paciente_id,prueba,consulta_id) VALUES(?,?,?)";
         try {
             ps = conectar().prepareStatement(sql);
             ps.setObject(1, paciente);
@@ -378,9 +402,35 @@ public class ConsultaDAO extends Conexion {
             ps.setObject(2, idPaciente);
             ps.setObject(3, idConsulta);
             ps.executeUpdate();
+            conectar().close();
             System.out.println("Tratamiento registrado");
         } catch (SQLException e) {
             System.out.println("Error al registrar tratamiento "+e.getMessage());
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean ultimaConsultaPaciente(Consulta c,int codigo){
+        
+        String sql = "SELECT * FROM consulta WHERE paciente_id=?";
+        try {
+            ps = conectar().prepareStatement(sql);
+            ps.setObject(1, codigo);
+            
+            rs = ps.executeQuery();
+            rs.afterLast();
+            while(rs.last()){
+                c.setCodigo(rs.getInt("idConsulta"));
+                c.setPaciente_id(rs.getInt("paciente_id"));
+                c.setSintomas(rs.getString("sintomas"));
+                c.setEstado(rs.getString("prioridad"));
+            }
+            System.out.println("La ultima consulta de "+codigo+" es "+c.getCodigo());
+            conectar().close();
+        } catch (SQLException e) {
+            System.out.println("Error al obtener ultima consulta "+e.getMessage());
             return false;
         }
         

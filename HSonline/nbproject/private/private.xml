@@ -3,9 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Skyroot/Documents/NetBeansProjects/HSonline/web/vista/admin.jsp</file>
-            <file>file:/C:/Users/Skyroot/Documents/NetBeansProjects/HSonline/src/java/controlador/Controlador.java</file>
-            <file>file:/C:/Users/Skyroot/Documents/NetBeansProjects/HSonline/web/recursos/css/home_index.css</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/vista/gestion_doctores.jsp</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/recursos/css/estilos_resultados.css</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/recursos/js/mod_doctor.js</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/vista/ajaxpages/buscarhorario.jsp</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/src/java/modelo/PacienteDAO.java</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/src/java/controlador/RegistrarSanitario.java</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/src/java/modelo/ConsultaDAO.java</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/vista/gestion_horarios.jsp</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/recursos/css/doctores.css</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/recursos/js/admin_panel.js</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/src/java/controlador/EditarHorario.java</file>
+            <file>file:/C:/Users/Skyroot/Documents/GitHub/TFG/HSonline/web/vista/admin.jsp</file>
         </group>
     </open-files>
 </project-private>

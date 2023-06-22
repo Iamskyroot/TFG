@@ -5,6 +5,7 @@
  */
 
 
+
 //search data
 function buscarPersonal(data) {
     var xmlhttp = new XMLHttpRequest();
@@ -31,7 +32,7 @@ function eliminarPersonal(id, nom) {
 }
 
 //horario
-function horarioPersonal(id){
+function horarioPersonal(id) {
     document.getElementById('modalHorario').style.display = "block";
     document.getElementById('idSan').value = id;
 }
@@ -73,6 +74,23 @@ function makeUser(length, input) {
     }
     input.setAttribute("value", result);
 
+}
+
+function validateFormRegistro() {
+    var validate = true, i;
+    var req = document.getElementsByClassName("req");
+    for (i = 0; i < req.length; i++) {
+        if (req[i].value === "" || req[i].value.length < 3) {
+            req[i].style.background = "#ffdddd";
+            req[i].style.border = "1px solid red";
+            validate = false;
+
+        } else {
+            req[i].style.background = "#f1f1f1";
+            req[i].style.border = "none";
+        }
+    }
+    return validate;
 }
 
 

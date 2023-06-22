@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Consulta;
 import modelo.ConsultaDAO;
 import modelo.Hospitalizacion;
 import modelo.Paciente;
@@ -51,15 +52,6 @@ public class RegistrarPaciente extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -79,6 +71,30 @@ public class RegistrarPaciente extends HttpServlet {
         String usuario = request.getParameter("user");
         String passw = request.getParameter("psw");
 
+//        String motivo = request.getParameter("motivo");
+//        double altura = Double.parseDouble(request.getParameter("altura"));
+//        double peso = Double.parseDouble(request.getParameter("peso"));
+//        double temp = Double.parseDouble(request.getParameter("temperatura"));
+//        double tension = 0;
+//        double pulso = 0;
+//        if (request.getParameter("tension") != "") {
+//            tension = Double.parseDouble(request.getParameter("tension"));
+//        } else if (request.getParameter("pulso") != "") {
+//            pulso = Double.parseDouble(request.getParameter("pulso"));
+//        }
+//        String prioridad = request.getParameter("estado");
+//        String sintomas = request.getParameter("sintomas");
+//        String s[] = request.getParameterValues("s");
+//        String servicio = request.getParameter("servicio");
+//
+//        String datosSintomas = "";
+//        for (String datos : s) {
+//            datosSintomas += datos + ", ";
+//        }
+//        datosSintomas += sintomas;
+        Consulta c = new Consulta();
+        ConsultaDAO cdao = new ConsultaDAO();
+
         if (request.getParameter("accion") != null) {
             String accion = request.getParameter("accion");
 
@@ -95,50 +111,67 @@ public class RegistrarPaciente extends HttpServlet {
             if (accion.equalsIgnoreCase("Guardar")) {
                 if (!pdao.existePaciente(documento)) {
 
-                    pdao.guardarPaciente2(p);
+                    if (pdao.guardarPaciente2(p)) {
+//                        c.setMotivo(motivo);
+//                        c.setAltura(altura);
+//                        c.setPeso(peso);
+//                        c.setTemperatura(temp);
+//                        c.setTension(tension);
+//                        c.setPulso(pulso);
+//                        c.setSintomas(datosSintomas);
+//                        c.setServicio(servicio);
+//                        c.setEstado(prioridad);
+                        response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=OK");
+                        /*if (cdao.registroTriaje(c, String.valueOf(p.getCodigo()))) {
 
-//                estado = "Datos guardados con exito";
-//                alert = "<div id='alert_error' class='alert success animate'>"
-//                        + "<span onclick='closeAlert()' class='closealert'>&times;</span>"
-//                        + "<p>" + estado + "</p>"
-//                        + "</div>";
-//                request.setAttribute("alert", alert);
-                    response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=OK");
-//                request.getRequestDispatcher("Controlador?menu=Interconsulta&accion=Registro").forward(request, response);
+                        } else {
+                            error = "Error al guardar datos del triaje";
+                            alert = "<div class='alert alert-warning animate'>"
+                                    + "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"
+                                    + "<p><strong>Info!</strong> " + error + "</p>"
+                                    + "</div>";
+                            request.setAttribute("alert", alert);
+                            request.getRequestDispatcher("Controlador?menu=Pacientes&accion=Listar&page=1").forward(request, response);
+                        }*/
+                    } else {
+                        error = "No se pudo guardar los datos";
+                        alert = "<div class='alert alert-warning animate'>"
+                                + "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"
+                                + "<p><strong>Info!</strong> " + error + "</p>"
+                                + "</div>";
+                        request.setAttribute("alert", alert);
+                        request.getRequestDispatcher("Controlador?menu=Pacientes&accion=Listar&page=1").forward(request, response);
+                    }
 
                 } else {
-
-                    error = "El paciente ya esta registrado en el sistema.";
-//                alert = "<div id='alert_error' class='alert warning animate'>"
-//                        + "<span onclick='closeAlert()' class='closealert'>&times;</span>"
-//                        + "<p>" + error + "</p>"
-//                        + "</div>";
-//                request.setAttribute("paciente", p);
-//                request.setAttribute("alert", alert);
-//                //pcdao.datosPacienteConsulta(0, 0)
-//                request.getRequestDispatcher("Controlador?menu=Interconsulta&accion=Registro").forward(request, response);
-                    response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=" + error);
+                    error = "El paciente con el documento " + documento + " ya existe";
+                    alert = "<div class='alert alert-warning animate'>"
+                            + "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"
+                            + "<p><strong>Info!</strong> " + error + "</p>"
+                            + "</div>";
+                    request.setAttribute("alert", alert);
+                    request.getRequestDispatcher("Controlador?menu=Pacientes&accion=Listar&page=1").forward(request, response);
                 }
-            } else if (accion.equalsIgnoreCase("Actualizar")) {
+
+            }
+            if (accion.equalsIgnoreCase("Actualizar")) {
                 p.setCodigo(Integer.parseInt(request.getParameter("idPaci")));
-                pdao.actualizarPaciente(p);
-                response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=OK");
-            } else {
-                error = "Error al actualizar paciente";
-                response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=" + error);
+                if (pdao.actualizarPaciente(p)) {
+                    response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1&r=OK");
+                } else {
+                    error = "No se pudo actualizar los datos";
+                    alert = "<div class='alert alert-warning animate'>"
+                            + "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"
+                            + "<p><strong>Info!</strong> " + error + "</p>"
+                            + "</div>";
+                    request.setAttribute("alert", alert);
+                    request.getRequestDispatcher("Controlador?menu=Pacientes&accion=Listar&page=1").forward(request, response);
+                }
             }
 
-//            error = "No se pudo realizar la operacion";
-//            response.sendRedirect("Controlador?menu=Pacientes&accion=Listar&page=1");
         }
-
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

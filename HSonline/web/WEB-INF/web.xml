@@ -88,6 +88,18 @@
         <servlet-name>RegistrarSanitario</servlet-name>
         <servlet-class>controlador.RegistrarSanitario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AsignarPruebas</servlet-name>
+        <servlet-class>controlador.AsignarPruebas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CtrlHorario</servlet-name>
+        <servlet-class>controlador.CtrlHorario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarHorario</servlet-name>
+        <servlet-class>controlador.EditarHorario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidarLogin</servlet-name>
         <url-pattern>/ValidarLogin</url-pattern>
@@ -175,6 +187,18 @@
     <servlet-mapping>
         <servlet-name>RegistrarSanitario</servlet-name>
         <url-pattern>/sanitario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AsignarPruebas</servlet-name>
+        <url-pattern>/pruebas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CtrlHorario</servlet-name>
+        <url-pattern>/Horario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarHorario</servlet-name>
+        <url-pattern>/editarhorario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

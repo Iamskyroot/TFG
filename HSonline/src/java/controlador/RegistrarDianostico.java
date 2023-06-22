@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Consulta;
 import modelo.ConsultaDAO;
 import modelo.Hospitalizacion;
 import modelo.HospitalizacionDAO;
@@ -25,6 +26,7 @@ public class RegistrarDianostico extends HttpServlet {
     Sanitario sanitario = new Sanitario();
     PacienteDAO pdao = new PacienteDAO();
     HospitalizacionDAO hospi = new HospitalizacionDAO();
+    Consulta c = new Consulta();
     String estado = "", resp = "", alert = "";
 
     public String fecha() {
@@ -52,7 +54,10 @@ public class RegistrarDianostico extends HttpServlet {
                 for (String dianostico : dianosticos) {
                     datosDianosticos += dianostico + "+ \t";
                 }
-                cdao.actualizarConsulta(datosDianosticos, fecha(), sanitario.getCodigo(), codConsulta);
+                c.setDianosticos(datosDianosticos);
+                c.setCodigo(Integer.parseInt(codConsulta));
+                c.setFecha_dianostico(fecha());
+                cdao.actualizarDianostico(c);
                 
             }
 

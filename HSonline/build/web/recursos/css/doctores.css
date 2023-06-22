@@ -141,20 +141,24 @@ table .accion{
 /*popup form to add*/
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
-  background-color: #269abc;
-  color: white;
-  font-weight: bold;
-  padding: 16px 20px;
-  border: none;
-  cursor: pointer;
   position: fixed;
-  bottom: 10px;
-  right: 30px;
   width: 80px;
   height: 80px;
+  bottom: 30px;
+  right: 30px;
   border-radius: 50%;
+  background-color: #002752;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
 }
-.open-button:hover{opacity: 0.8;}
+
+.open-button:hover{opacity: 0.9;}
 
 /* The popup form - hidden by default */
 .modal {
