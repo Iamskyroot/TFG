@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    /*    background-color: #269abc;*/
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-image: url(../img/h_exterior.jpg);
     background-repeat: no-repeat;
     background-size: 100% 100%;

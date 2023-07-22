@@ -77,13 +77,6 @@ public class Controlador extends HttpServlet {
                 request.setAttribute("tratamientos", estadistica.getTratamientos());
                 request.setAttribute("hospitalizados", estadistica.getHospitalizados());
                 request.setAttribute("hc", estadistica.getHc());
-                request.setAttribute("lunes", hdao.lunes());
-                request.setAttribute("martes", hdao.martes());
-                request.setAttribute("miercoles", hdao.miercoles());
-                request.setAttribute("jueves", hdao.jueves());
-                request.setAttribute("viernes", hdao.viernes());
-                request.setAttribute("sabado", hdao.sabado());
-                request.setAttribute("domingo", hdao.domingo());
                 request.getRequestDispatcher("vista/admin.jsp").forward(request, response);
                 break;
             case "Inicio":

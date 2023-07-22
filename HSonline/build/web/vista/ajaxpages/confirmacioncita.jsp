@@ -4,6 +4,7 @@
     Author     : Skyroot
 --%>
 
+<%@page import="java.sql.SQLException"%>
 <%@page import="modelo.Paciente"%>
 <%@page import="modelo.Sanitario"%>
 <%@page import="java.time.LocalDateTime"%>
@@ -28,27 +29,35 @@
             LocalDateTime fecha = LocalDateTime.now();
             int y = fecha.getYear();
             int m = fecha.getMonthValue();
-            int d = fecha.getDayOfMonth()-1;
-            int d5 = fecha.getDayOfMonth()+4;
+            int d = fecha.getDayOfMonth() - 4;
+            int d5=4;
+            if(d <= 24){
+             d5 = d + 4;
+            }
             int h = fecha.getHour();
             int min = fecha.getMinute();
             int seg = fecha.getSecond();
-
-            String sql = "SELECT * FROM citas WHERE (documento='"+usu.getDocumento()+"') AND (fecha_inicio BETWEEN '" + fecha.of(y, m, d, h, min, seg) + "' AND '" + fecha.of(y, m, d5, h, min, seg) + "')";
-            Statement st = con.conectar().createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if(rs.last()) {
+            
+            try {
+                
+                String sql = "SELECT * FROM citas WHERE (documento='" + usu.getDocumento() + "') AND (fecha_inicio BETWEEN '" + fecha.of(y, m, d, h, min, seg) + "' AND '" + fecha.of(y, m, d5, h, min, seg) + "')";
+                Statement st = con.conectar().createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                if (rs.last()) {
 
         %>
-        <p>Fecha: <%=rs.getString("fecha_inicio") %></p>
-        <!--<p>Fecha de vigencia: <%=rs.getString("fecha_fin") %></p>-->
-        <p>Fecha: <%=rs.getString("medico") %> </p>
+        <p>Fecha: <%=rs.getString("fecha_inicio")%></p>
+        <!--<p>Fecha de vigencia: <%=rs.getString("fecha_fin")%></p>-->
+        <p>Fecha: <%=rs.getString("medico")%> </p>
         <%
-            }else{
+        } else {
 
         %>
         <p>Ninguna cita pendiente</p>
         <% }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
             con.conectar().close();
         %>
     </body>

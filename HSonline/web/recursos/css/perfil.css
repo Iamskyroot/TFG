@@ -8,7 +8,9 @@ and open the template in the editor.
     Author     : Skyroot
 */
 *{margin: 0;padding: 0}
-body{min-height: 100vh;background-color: #ddd}
+body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;background-color: #ddd}
 label,p,ul,li,fieldset{
     margin: 0;
     padding: 0;

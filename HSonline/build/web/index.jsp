@@ -36,189 +36,136 @@
                     <div class="close" id="close" title="Cerrar menu">&times;</div>
                 </a></li>
         </ul>
-        <div class="main">
-            <div class="main-content">
+        <div class="main-content">
 
-                <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade">
-                    <!-- <div class="numbertext">1 / 3</div> -->
-                    <img src="<%= request.getContextPath()%>/recursos/img/h_exterior2.jpg">
-                    <div class="text">Recepción. Parte exterior</div>
-                </div>
-
-                <div class="mySlides fade">
-                    <!-- <div class="numbertext">2 / 3</div> -->
-                    <img src="<%= request.getContextPath()%>/recursos/img/recepcion.jpg">
-                    <div class="text">Recepción. Parte interior</div>
-                </div>
-
-                <div class="mySlides fade">
-                    <!-- <div class="numbertext">3 / 3</div> -->
-                    <img src="<%= request.getContextPath()%>/recursos/img/servicios.jpg">
-                    <div class="text">Mapa de servicios</div>
-                </div>
-
-                <div class="mySlides fade">
-                    <!-- <div class="numbertext">3 / 3</div> -->
-                    <img src="<%= request.getContextPath()%>/recursos/img/pabellon.jpg">
-                    <div class="text">Salas de hospitalización</div>
-                </div>
-
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                <br>
-
-                <!-- The dots/circles -->
-                <div style="text-align:center">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                    <span class="dot" onclick="currentSlide(4)"></span>
-                </div>
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade">
+                <!-- <div class="numbertext">1 / 3</div> -->
+                <img src="<%= request.getContextPath()%>/recursos/img/h_exterior2.jpg">
+                <div class="text">Recepción. Parte exterior</div>
             </div>
 
-            <div class="main-aside">
+            <div class="mySlides fade">
+                <!-- <div class="numbertext">2 / 3</div> -->
+                <img src="<%= request.getContextPath()%>/recursos/img/recepcion.jpg">
+                <div class="text">Recepción. Parte interior</div>
+            </div>
+
+            <div class="mySlides fade">
+                <!-- <div class="numbertext">3 / 3</div> -->
+                <img src="<%= request.getContextPath()%>/recursos/img/pabellon.jpg">
+                <div class="text">Salas de hospitalización</div>
+            </div>
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <br>
+
+            <!-- The dots/circles -->
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column aside">
                 <h2>Programacion y anuncios</h2><br>
-                <%
-                    Conexion con = new Conexion();
-                    Statement st = null;
-                    String sql = "SELECT * FROM programacion";
-                    try {
+                <div class="content">
+                    <%
+                        Conexion con = new Conexion();
+                        Statement st = null;
+                        String sql = "SELECT * FROM programacion";
+                        try {
                             st = con.conectar().createStatement();
                             ResultSet rs = st.executeQuery(sql);
                             rs.afterLast();
-                            while(rs.previous()){
-                                
-                            
-                %>
-                <div class="a-item">
-                    <h3><%= rs.getString("titulo") %></h3>
-                    <p>Fecha: <%= rs.getString("fecha") %></p>
-                    <p><%= rs.getString("descripcion") %></p>
-                    <p><b>Horas permitidas: </b><%= rs.getString("inicio") %> - <%= rs.getString("fin") %></p>
-                </div>
-               
-                <%
-                    }
-                        } catch (Exception e) {
-                            System.out.println("Error al consultar la programacion. "+e.getMessage());
-                        }
-                %>
-            </div>
+                            while (rs.previous()) {
 
+
+                    %>
+                    <div class="a-item">
+                        <h3><%= rs.getString("titulo")%></h3>
+                        <p>Fecha: <%= rs.getString("fecha")%></p>
+                        <p><%= rs.getString("descripcion")%></p>
+                        <p><b>Horas permitidas: </b><%= rs.getString("inicio")%> - <%= rs.getString("fin")%></p>
+                    </div>
+
+                    <%
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Error al consultar la programacion. " + e.getMessage());
+                        }
+                    %>
+                </div>
+            </div>
+            <div class="column main">
+                <div class="portofollo">
+                    <div>
+                        <h3>Nuestros servicios<h3>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <div class="content">
+                                <img src="<%=request.getContextPath()%>/recursos/img/genicologia.png" alt="Genicologia" style="width:100%">
+                                <h3>Genicologia</h3>
+                                <p>La Ginecología y Obstetricia nace como una especialidad que se dedica al cuidado de la salud de los órganos reproductores femeninos y al manejo de las complicaciones obstétricas, incluso a través de intervenciones quirúrgicas.</p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="content">
+                                <img src="<%=request.getContextPath()%>/recursos/img/consulta.png" alt="Consulta" style="width:100%">
+                                <h3>Dianostico por imagen</h3>
+                                <p>Los servicios de diagnóstico por imágenes hacen referencia a la realización de exámenes de diagnóstico por imágenes para ver y tratar mejor las afecciones médicas</p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="content">
+                                <img src="<%=request.getContextPath()%>/recursos/img/odontologia.jpeg" alt="Odontologia" style="width:100%">
+                                <h3>Odontología</h3>
+                                <p>Ofrecemos diagnóstico, tratamiento y prevención de las enfermedades del aparato estomatognático</p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="content">
+                                <img src="<%=request.getContextPath()%>/recursos/img/consulta.png" alt="Mountains" style="width:100%">
+                                <h3>Consulta</h3>
+                                <p>Consulta (personal o telefónica) a un profesional médico titulado para diagnóstico, examen, tratamiento, seguimiento, consejo o cualquier otro trámite por algún problema, molestia o enfermedad de la persona entrevistada.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
 
-        <div class="portofollo">
-            <div><h3>Nuestros servicios para solicitar en línea<h3></div>
-                        <div class="row">
-                            <div class="column">
-                                <div class="content">
-                                    <img src="<%= request.getContextPath()%>/recursos/img/genicologia.png" alt="Genicologia" style="width:100%">
-                                    <h3>Genicologia</h3>
-                                    <p>La Ginecología y Obstetricia nace como una especialidad que se dedica al cuidado de la salud de los órganos reproductores femeninos y al manejo de las complicaciones obstétricas, incluso a través de intervenciones quirúrgicas.</p>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="content">
-                                    <img src="<%= request.getContextPath()%>/recursos/img/ecografia.jpg" alt="Consulta" style="width:100%">
-                                    <h3>Dianostico por imagen</h3>
-                                    <p>Los servicios de diagnóstico por imágenes hacen referencia a la realización de exámenes de diagnóstico por imágenes para ver y tratar mejor las afecciones médicas</p>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="content">
-                                    <img src="<%= request.getContextPath()%>/recursos/img/odontologia.jpeg" alt="Odontologia" style="width:100%">
-                                    <h3>Odontología</h3>
-                                    <p>Ofrecemos diagnóstico, tratamiento y prevención de las enfermedades del aparato estomatognático</p>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="content">
-                                    <img src="<%= request.getContextPath()%>/recursos/img/consulta.png" alt="Mountains" style="width:100%">
-                                    <h3>Consulta</h3>
-                                    <p>Consulta (personal o telefónica) a un profesional médico titulado para diagnóstico, examen, tratamiento, seguimiento, consejo o cualquier otro trámite por algún problema, molestia o enfermedad de la persona entrevistada.</p>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
 
-
-                        <div class="footer">
-                            <div class="f_item">
-                                <h4>informacion de contacto</h4>
-                                <p>Direccion: <strong>Sampaka - al lado del Hospital Psiquiatrico</strong></p>
-                                <p>Telefono: <strong>222 345 562/333 356 246</strong></p>
-                                Email: <a>hsonlinegq@gmail.com</a>
-                            </div>
-                            <div class="f_item">
-                                <h4>Nuestros servicios</h4>
-                                <ul>
-                                    <li>Consultas</li>
-                                    <li>Hospitalizacion</li>
-                                    <li>Urgencias</li>
-                                    <li>Dianostico por imagen</li>
-                                    <li>UCI</li>
-                                </ul>
-                            </div>
-                            <div class="f_item">
-                                <h4>Politica de privacidad</h4>
-                                <p>TFG UNGE &copy;2022 Derechos reservados</p>
-                                <p>Autores: <b>Valentin E. Angono</b> y <b>Javier Clemente Mangue</b></p>
-                            </div>
-                        </div>
-
-                        <script type="text/javascript">
-
-                            var slideIndex = 1;
-                            showSlides(slideIndex);
-                            autoSlides();
-
-                            // Next/previous controls
-                            function plusSlides(n) {
-                                showSlides(slideIndex += n);
-                            }
-
-                            // Thumbnail image controls
-                            function currentSlide(n) {
-                                showSlides(slideIndex = n);
-                            }
-
-                            function showSlides(n) {
-                                var i;
-                                var slides = document.getElementsByClassName("mySlides");
-                                var dots = document.getElementsByClassName("dot");
-                                if (n > slides.length) {
-                                    slideIndex = 1
-                                }
-                                if (n < 1) {
-                                    slideIndex = slides.length
-                                }
-                                for (i = 0; i < slides.length; i++) {
-                                    slides[i].style.display = "none";
-                                }
-                                for (i = 0; i < dots.length; i++) {
-                                    dots[i].className = dots[i].className.replace(" active", "");
-                                }
-                                slides[slideIndex - 1].style.display = "block";
-                                dots[slideIndex - 1].className += " active";
-                            }
-
-                            function autoSlides() {
-                                var i;
-                                var slides = document.getElementsByClassName("mySlides");
-                                for (i = 0; i < slides.length; i++) {
-                                    slides[i].style.display = "none";
-                                }
-                                slideIndex++;
-                                if (slideIndex > slides.length) {
-                                    slideIndex = 1
-                                }
-                                slides[slideIndex - 1].style.display = "block";
-                                setTimeout(autoSlides, 8000); // Change image every 7 seconds
-                                currentSlide(slideIndex);
-                            }
-
-                        </script>
-                        </body>
-                        </html>
+        <div class="footer">
+            <div class="f_item">
+                <h4>informacion de contacto</h4>
+                <p>Direccion: <strong>Sampaka - al lado del Hospital Psiquiatrico</strong></p>
+                <p>Telefono: <strong>222 345 562/333 356 246</strong></p>
+                Email: <a>hsonlinegq@gmail.com</a>
+            </div>
+            <div class="f_item">
+                <h4>Nuestros servicios</h4>
+                <ul>
+                    <li>Consultas</li>
+                    <li>Hospitalizacion</li>
+                    <li>Urgencias</li>
+                    <li>Dianostico por imagen</li>
+                    <li>UCI</li>
+                </ul>
+            </div>
+            <div class="f_item">
+                <h4>Politica de privacidad</h4>
+                <p>TFG UNGE &copy;2022 Derechos reservados</p>
+                <p>Autores: <b>Valentin E. Angono</b> y <b>Javier Clemente Mangue</b></p>
+            </div>
+        </div>
+<script src="<%= request.getContextPath()%>/recursos/js/index.js" type="text/javascript"></script>
+<script src="<%= request.getContextPath()%>/recursos/js/header.js" type="text/javascript"></script>
+</body>
+</html>

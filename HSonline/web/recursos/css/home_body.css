@@ -1,6 +1,7 @@
 @charset "ISO-8859-1";
 
 body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: whitesmoke;
     height: 100vh;
 }

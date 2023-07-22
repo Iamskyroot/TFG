@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: #ddd;
     min-height: 100vh;
 }

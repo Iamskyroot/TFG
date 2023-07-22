@@ -7,7 +7,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{min-height: 100vh;background-color: #ddd}
+body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;background-color: #ddd}
 /*.main{
     width: 100%;
     min-height: 587px;
@@ -112,7 +114,7 @@ table thead{
     font-size: 18px;
     font-weight: bold;
     background-color: #269abc;
-    color: black;
+    color: whitesmoke;
 }
 /*.container_table table thead td{
     padding: 0 10px;

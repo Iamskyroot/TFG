@@ -228,24 +228,30 @@
                     <div class="container-fluid">
                         <div class="container-data">
                             <div class="">
-                                <h1 class="display-4">Tablero</h1>
+                                <h2 class="display-4">Tablero de horarios</h2>
                             </div>
-                            
-                            <table class="table table-bordered table-responsive" style="background-color: white">
+                            <div class="filter_div">
+                                <a class="filter_item" id="lun" onclick="listSchedules('lunes',this)">Lunes</a>
+                                <a class="filter_item" id="mar" onclick="listSchedules('martes',this)">Martes</a>
+                                <a class="filter_item" id="mie" onclick="listSchedules('miercoles',this)">Miercoles</a>
+                                <a class="filter_item" id="jue" onclick="listSchedules('jueves',this)">Jueves</a>
+                                <a class="filter_item" id="vie" onclick="listSchedules('viernes',this)">Viernes</a>
+                                <a class="filter_item" id="sab" onclick="listSchedules('sabado',this)">Sabado</a>
+                                <a class="filter_item" id="dom" onclick="listSchedules('domingo',this)">Domingo</a>
+                            </div>
+                            <table class="table table-bordered" style="background-color: white">
                                 <thead>
                                     <tr>
                                         
-                                        <th>Lunes</th>
-                                        <th>Martes</th>
-                                        <th>Miercoles</th>
-                                        <th>Jueves</th>
-                                        <th>Viernes</th>
-                                        <th>Sabado</th>
-                                        <th>Domingo</th>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Dia</th>
+                                        <th>Entrada</th>
+                                        <th>Salida</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody id="scheduleContainer">
+<!--                                    <tr>
                                         <td>
                                             <c:forEach items="${lunes}" var="l">
                                                 <span>${l.getNombre_sanitario()},</span>
@@ -281,7 +287,7 @@
                                                 <span>${m.getNombre_sanitario()},</span>
                                             </c:forEach>
                                         </td>
-                                    </tr>
+                                    </tr>-->
                                 </tbody>
                             </table>
                             <!--<div id="tablero"></div>-->

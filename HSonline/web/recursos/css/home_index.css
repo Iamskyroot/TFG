@@ -16,7 +16,8 @@ a{
     text-decoration: none;
 }
 
-.body{
+body{
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: whitesmoke;
 }
 
@@ -24,7 +25,7 @@ a{
     width: 100%;
     background-color: white;
     padding: 14px 20px;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .navegacion .n_item{
@@ -42,7 +43,7 @@ a{
     font-weight: bolder;
     color: green;
     padding: 0;
-    
+
 }
 
 .logo a{
@@ -85,7 +86,7 @@ a{
 .dropdown {
     float: right;
     margin-right: 40px;
-    background-color: red;
+    background-color: #269abc;
     margin-top: 6px;
     padding: 10px 4px;
     border-radius: 5px;
@@ -125,7 +126,7 @@ a{
 
 /*---------------------------------------END HEADER------------------------------*/
 
-.main{
+/*.main{
     display: flex;
     margin: 10px auto;
     justify-items: space-between;
@@ -133,179 +134,187 @@ a{
 .main-aside{
     flex: 30%;
     padding: 10px 20px;
-    /*background-color: #ddd;*/
-    /*box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);*/
-    box-sizing: border-box;
-}
-.a-item{
-    padding: 10px;
-    background-color: #269abc;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-.main-content{
-    flex: 70%;
-    padding: 10px;
-    /*background-color: whitesmoke;*/
+    background-color: whitesmoke;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
+}*/
+
+.main-content{
+    width: 100%;
+    padding: 10px;
+    background-color: whitesmoke;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #ddd;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
 
 /* Hide the images by default */
 .mySlides {
-  display: none;
+    display: none;
 }
 .mySlides img{
-	width: 100%;
-	max-height: 400px;
+    width: 100%;
+    max-height: 400px;
 }
 
 /* Next & previous buttons */
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 45%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+    cursor: pointer;
+    position: absolute;
+    top: 36%;
+    width: auto;
+    /*margin-top: -22px;*/
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.5);
 }
 
 /* Position the "next button" to the right */
 .next {
-  right: 31%;
-  border-radius: 3px 0 0 3px;
+    right: 10px;
+    border-radius: 3px 0 0 3px;
 }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.8);
 }
 
 /* Caption text */
 .text {
-  /*color: #f2f2f2;*/
-  font-size: 20px;
-  padding: 8px 12px;
-  /*position: absolute;*/
-  font-weight: bold;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+    /*color: #f2f2f2;*/
+    font-size: 20px;
+    padding: 8px 12px;
+    /*position: absolute;*/
+    font-weight: bold;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
 }
 
 /* Number text (1/3 etc) */
 .numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  /*position: absolute;*/
-  top: 0;
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    /*position: absolute;*/
+    top: 0;
 }
 
 /* The dots/bullets/indicators */
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
 }
 
 .dot.active, .dot:hover {
-  background-color: #717171;
+    background-color: #269abc;
 }
 
 /* Fading animation */
 .fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 2s;
-  animation-name: fade;
-  animation-duration: 2s;
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 2s;
+    animation-name: fade;
+    animation-duration: 2s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+    from {opacity: .4}
+    to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+    from {opacity: .4}
+    to {opacity: 1}
 }
 
 /*---------------------------------------END SLIDE------------------------*/
 
 
 /*------------------------------portofolio servicios-------------------------*/
-.portofollo{
-    padding: 10px;
+.row {  
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+
+.row .column{
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    flex-direction: column;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin: 0 5px;
     box-sizing: border-box;
+}
+
+.row .aside {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    padding: 10px;
+    background-color: #f1f1f1;
+    overflow-y: auto;
+}
+.a-item{
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.row .main {   
+    -ms-flex: 70%; /* IE10 */
+    flex: 70%;
+    flex-direction: column;
+    align-content: space-between;
     background-color: white;
 }
-.row {
-  margin: 8px;
+
+.main .column .content img{
+    width: 100%;
+    max-height: 400px;
 }
 
-/* Add padding BETWEEN each column (if you want) */
-.row,
-.row > .column {
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-/* Create four equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 24%;
-  min-height:420px;
-  margin: 0 6px;
-  box-shadow: 0 0 2px 0 rgba(0,0,0,0.2);
-}
-
-/* Clear floats after rows */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Content */
-.content {
-  background-color: white;
-  padding: 10px;
-}
 
 /*contact section*/
 /* Style inputs */
 input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
 }
 
 input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+    background-color: #45a049;
 }
 
 /*footer*/
@@ -324,28 +333,43 @@ input[type=submit]:hover {
 }
 /*-----------------------------------*/
 
+/*portofolio servicios*/
+.portofollo{
+    box-sizing: border-box;
+    background-color: #269abc;
+}
+.portofollo .row{
+    display: flex;
+    flex-flow: wrap;
+}
+.portofollo .row .column {
+    display: table-cell;
+  padding: 5px;
+}
+
+/* Create four equal columns that floats next to each other */
+.row .portofollo .column {
+  flex: 1;
+  width: 100%;
+  background-color: white;
+  margin: 6px;
+  border-radius: 5px;
+}
+
+
 /* Responsive layout - makes a two column-layout instead of four columns */
-@media screen and (max-width: 900px) {
-  .column {
-    width: 50%;
-  }
-  .main-aside{width: 20%;}
-  .main-content{width: 80%;}
+@media screen and (max-width: 700px) {
+    .row {   
+        flex-direction: column;
+    }
+    .mySlides img{
+        height: 300px;
+    }
+    .portofollo .column{width: 100%}
 
+    .footer{flex-direction: column}
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
-  .main{
-    display: block;
-  }
-  .main-aside,.main-content{width: 80%; margin: auto;}
-  .footer{display: block}
-
-}
 
 @media screen and (max-width: 600px){
     .form-popup{width: 90%; left: 5%;right: 5%}
