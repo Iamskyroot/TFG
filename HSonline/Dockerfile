@@ -1,0 +1,2 @@
+FROM openjdk:19
+EXPOSE 8086
