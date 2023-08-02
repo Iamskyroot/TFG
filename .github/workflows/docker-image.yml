@@ -17,7 +17,7 @@ jobs:
 #     - name: Build the Docker image
 #       run: docker build . --file Dockerfile --tag hsonline:$(date +%s)
     - name: Build Docker image
-      run: docker build --tag iamskyroot/tfg.
+      run: docker build . -t iamskyroot/tfg.
 
     - name: Push Docker image
       run: docker push iamskyroot/tfg
