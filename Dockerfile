@@ -1,2 +1,4 @@
-COPY --from=build /app .
-CMD ["java","app.war"]
+FROM opentjdk:19
+EXPOSE 8080
+ADD build/hsonline.war hsonline.war
+CMD ["java","hsonline.war"]
