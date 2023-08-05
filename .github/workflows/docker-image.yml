@@ -32,7 +32,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
+    - name: Build the Docker image d
 #       run: docker build . --file Dockerfile --tag iamskyroot/tfg:my-first-image$(date +%s)
       run: |
         echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
