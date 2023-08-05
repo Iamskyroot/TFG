@@ -1,4 +1,14 @@
-FROM opentjdk:19
+# Use an official Java runtime as a parent image
+FROM openjdk:8-jdk-alpine
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the target/myapp.jar file from the build stage to the container
+COPY build/hsonline.war /app
+
+# Expose the port that the application will listen on
 EXPOSE 8080
-ADD build/hsonline.war hsonline.war
-CMD ["java","hsonline.war"]
+
+# Start the application
+CMD ["java", "-war", "hsonline.war"]
