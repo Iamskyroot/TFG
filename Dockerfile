@@ -5,7 +5,7 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /app
 
 # Copy the dist/HSonline.war file from the build stage to the container
-COPY /dist/HSonline.war /app
+COPY dist/HSonline.war /app
 
 # Expose the port that the application will listen on
 EXPOSE 8080
