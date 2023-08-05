@@ -5,10 +5,10 @@ FROM openjdk:8-jdk-alpine
 WORKDIR /app
 
 # Copy the target/myapp.jar file from the build stage to the container
-COPY dist/HSonline.war /app
+COPY target/HSonline.war /app
 
 # Expose the port that the application will listen on
 EXPOSE 8080
 
 # Start the application
-CMD ["java", "-jar", "hsonline.war"]
+CMD ["java", "-jar", "HSonline.war"]
